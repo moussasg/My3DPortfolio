@@ -97,10 +97,6 @@ const technologies: TTechnology[] = [
     icon: tailwind,
   },
   {
-    name: "Bootstrap",
-    icon: botstrap,
-  },
-  {
     name: "Node JS",
     icon: nodejs,
   },
