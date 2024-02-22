@@ -8,12 +8,12 @@ import {
   Experience,
   Hero,
   Navbar,
-  Tech,
   Works,
   StarsCanvas,
 } from "./components";
 import { useEffect } from "react";
 import { config } from "./constants/config";
+import Tech from "./components/sections/tech";
 setTimeout(()=> {
   confetti()
 } , 1000)
@@ -34,7 +34,7 @@ const App = () => {
         </div>
         <About />
         <Experience />
-        <Tech />
+        <Tech/>
         <Works />
         <div className="relative z-0">
           <Contact />

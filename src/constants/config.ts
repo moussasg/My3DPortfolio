@@ -67,7 +67,7 @@ export const config: TConfig = {
       },
     },
   },
-  sections: {
+  sections: { // config.section.h2
     about: {
       p: "Introduction",
       h2: "Overview.",

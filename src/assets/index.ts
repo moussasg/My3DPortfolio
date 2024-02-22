@@ -18,18 +18,17 @@ import reactjs from "./tech/reactjs.png";
 import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
-import threejs from "./tech/threejs.svg";
 import Avidhilda from "./company/avidhilda.png";
 import Halliburton from "./company/halliburton.jpg";
 import Freelancer from "./company/freelancer.jpg";
-import botstrap from "./Bootstrap.png"
+import botstrap from "./tech/Bootstrap.png"
 import twentyoneia from "./twentyoneia.png";
 import oiltrading from "./tafkir.png";
 import ucfashion from "./universelcoture.png";
 import avidhildaWeb from "./avidhildaweb.png";
 import magazine from "./magazine.png";
-import Nextjs from "./nextjs.jpeg"
-import express from "../assets/tech/expressjs.png"
+import Nextjs from "./tech/nextjs.png"
+import express from "./tech/expressjs.png"
 
 export {
   logo,
@@ -51,7 +50,6 @@ export {
   redux,
   tailwind,
   typescript,
-  threejs,
   Avidhilda,
   Halliburton,
   Freelancer,

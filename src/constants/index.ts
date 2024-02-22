@@ -28,7 +28,9 @@ import {
   ucfashion,
   avidhildaWeb,
   magazine,
-  threejs,
+  Nextjs,
+  botstrap,
+  express
 } from "../assets";
 
 export const navLinks: TNavLink[] = [
@@ -102,11 +104,19 @@ const technologies: TTechnology[] = [
   {
     name: "MongoDB",
     icon: mongodb,
+  }, 
+  {
+    name: "Next.Js",
+    icon: Nextjs,
   },
   {
-    name: "Three JS",
-    icon: threejs,
-  }, 
+    name: "Bootsrtap",
+    icon: botstrap,
+  },
+  {
+    name: "Express.Js",
+    icon: express,
+  },
 ];
 
 const experiences: TExperience[] = [
