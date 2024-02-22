@@ -2,7 +2,7 @@ import { technologies } from "../../constants";
 import { config } from "../../constants/config";
 import { styles } from "../../constants/styles";
 
-const Tech = () => {
+export const Tech = () => {
   return (
     <>
     <section className="sm:px-16 px-6 sm:py-16 py-10 relative z-0 mx-auto max-w-7xl"> 
@@ -20,4 +20,3 @@ const Tech = () => {
     </>
   );
 };
-export default Tech;
