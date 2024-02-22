@@ -29,7 +29,6 @@ import {
   avidhildaWeb,
   magazine,
   threejs,
-  botstrap,
 } from "../assets";
 
 export const navLinks: TNavLink[] = [
