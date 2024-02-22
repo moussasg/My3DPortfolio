@@ -29,7 +29,6 @@ import {
   avidhildaWeb,
   magazine,
   threejs,
-  Nextjs,
   botstrap,
 } from "../assets";
 
@@ -112,10 +111,6 @@ const technologies: TTechnology[] = [
   {
     name: "Three JS",
     icon: threejs,
-  }, 
-  {
-    name: "Next.Js",
-    icon: Nextjs,
   }, 
 ];
 
