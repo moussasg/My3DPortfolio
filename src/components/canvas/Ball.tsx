@@ -38,9 +38,10 @@ const Ball = (props: any) => {
   );
 };
 
-const BallCanvas: React.FC<{ icon: string}> = ({ icon }) => {
+const BallCanvas: React.FC<{ icon: string, name: string }> = ({ icon, name }) => {
   return (
     <>
+    <div className="flex justify-center items-center">{name}</div>
     <Canvas
       frameloop="demand"
       dpr={[1, 2]}
