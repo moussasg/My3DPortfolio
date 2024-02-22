@@ -1,26 +1,20 @@
 import { motion } from "framer-motion";
-import TextTransition, { presets } from 'react-text-transition';
 import IndicatorRotation from "../../assets/rotation.png"
 import { styles } from "../../constants/styles";
 import { ComputersCanvas } from "../canvas";
 import {useState , useEffect} from "react"
 import { config } from "../../constants/config";
 const Hero = () => {
-  const TEXTS = ['Souag', 'Moussa'];
-  const [index, setIndex] = useState(0);
+
   const [RotationLogo , setRotationLogo] = useState(false)
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIndex((prevIndex) => prevIndex + 1);
-    }, 1000);
+
   
     const timeoutId = setTimeout(() => {
-      clearInterval(intervalId);
       setRotationLogo(true)
     }, 2000);
   
     return () => {
-      clearInterval(intervalId);
       clearTimeout(timeoutId);
     };
   }, []);
@@ -36,8 +30,8 @@ const Hero = () => {
         </div>
 
         <div className="flex flex-col gap-y-2 sm:gap-y-4">
-          <div className="flex gap-x-2 sm:gap-x-4"> 
-        <h1 className={`${styles.heroHeadText} text-white animate__animated animate__bounceInLeft animate__slow whitespace-nowrap`}>
+          <div className="flex gap-x-2 sm:gap-x-4 animate__animated animate__bounceInLeft animate__slow"> 
+        <h1 className={`${styles.heroHeadText} text-white  whitespace-nowrap`}>
             Hi, I'm 
           </h1>
           <div className={`${styles.heroHeadText} text-white`}>
