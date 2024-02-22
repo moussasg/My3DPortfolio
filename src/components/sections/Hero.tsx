@@ -37,7 +37,7 @@ const Hero = () => {
 
         <div className="flex flex-col gap-y-2 sm:gap-y-4">
           <div className="flex gap-x-2 sm:gap-x-4"> 
-        <h1 className={`${styles.heroHeadText} text-white animate__animated animate__bounceInLeft animate__slow`}>
+        <h1 className={`${styles.heroHeadText} text-white animate__animated animate__bounceInLeft animate__slow whitespace-nowrap`}>
             Hi, I'm 
           </h1>
         <TextTransition springConfig={presets.wobbly} className="animate__animated animate__bounceInRight animate__slow">

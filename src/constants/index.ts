@@ -31,7 +31,6 @@ import {
   threejs,
   Nextjs,
   botstrap,
-  express
 } from "../assets";
 
 export const navLinks: TNavLink[] = [
@@ -113,15 +112,11 @@ const technologies: TTechnology[] = [
   {
     name: "Three JS",
     icon: threejs,
-  },
+  }, 
   {
     name: "Next.Js",
     icon: Nextjs,
-  },  
-  {
-    name: "Express.Js",
-    icon: express,
-  },
+  }, 
 ];
 
 const experiences: TExperience[] = [

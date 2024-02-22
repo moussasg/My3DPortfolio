@@ -66,11 +66,9 @@ const ProjectCard: React.FC<{ index: number } & TProject> = ({
 };
 
 const Works = () => {
-
   return (
     <>
       <Header useMotion={true} {...config.sections.works} />
-
       <div className="flex w-full">
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
@@ -80,7 +78,7 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className="mt-20 flex flex-wrap gap-7">
+      <div className="mt-20 flex flex-wrap gap-4 sm:gap-7">
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
