@@ -29,9 +29,10 @@ import avidhildaWeb from "./avidhildaweb.png";
 import magazine from "./magazine.png";
 import Nextjs from "./tech/nextjs.png"
 import express from "./tech/expressjs.png"
-
+import damac from "./damac.png"
 export {
   logo,
+  damac,
   backend,
   creator,
   mobile,

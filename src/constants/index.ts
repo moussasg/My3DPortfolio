@@ -30,7 +30,8 @@ import {
   magazine,
   Nextjs,
   botstrap,
-  express
+  express,
+  damac
 } from "../assets";
 
 export const navLinks: TNavLink[] = [
@@ -247,6 +248,23 @@ const projects: TProject[] = [
     ],
     image: avidhildaWeb,
     url: "https://avidhilda.com",
+  },
+  {
+    name: "DAMAC UAE",
+    description:
+      "DAMAC Properties is a leading luxury real estate developer in the Middle East, with a track record of delivering some of the most iconic and innovative properties in the region. Founded in 2002, the company has quickly become a household name in the industry",
+    tags: [
+      {
+        name: "React.js",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Bootsrap",
+        color: "green-text-gradient",
+      },
+    ],
+    image: damac,
+    url: "https://real-estate-moussasg.vercel.app",
   },
   {
     name: "Magazine",
