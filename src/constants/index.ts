@@ -231,7 +231,7 @@ const projects: TProject[] = [
   {
     name: "Avidhilda",
     description:
-      "Avid Hilda is a premier exhibition organizing company based in the vibrant city of Dubai, at the crossroads of innovation and commerce",
+      "Avid Hilda is a premier exhibition organizing company based in the vibrant city of Dubai, at the crossroads of innovation and commerce,",
     tags: [
       {
         name: "React.Js",
