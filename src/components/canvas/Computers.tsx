@@ -1,9 +1,8 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { lazy , Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { rocket } from "../../assets";
 
-import CanvasLoader from "../layout/Loader";
 
 const Computers: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
@@ -30,6 +29,8 @@ const Computers: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
 };
 
 const ComputersCanvas = () => {
+  const CanvasLoader = lazy(() => import('./../layout/Loader')); // Replace './MyComponent' with your actual component path
+
   const [isMobile, setIsMobile] = useState(false); // if isMobilefalse
   useEffect(() => {
     // Add a listener for changes to the screen size

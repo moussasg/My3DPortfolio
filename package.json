@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.10.0",
-    "@react-three/drei": "^9.99.0",
-    "@react-three/fiber": "^8.11.1",
+    "@react-three/drei": "^9.0.1",
+    "@react-three/fiber": "^8.15.19",
     "@splinetool/react-spline": "github:splinetool/react-spline",
     "animate.css": "^4.1.1",
     "canvas-confetti": "^1.9.2",
