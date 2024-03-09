@@ -1,3 +1,5 @@
+import * as THREE from 'three';
+
 export type TCommonProps = {
   title?: string;
   name?: string;
