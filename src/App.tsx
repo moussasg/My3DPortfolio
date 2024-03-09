@@ -2,6 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import 'animate.css';
 import confetti from "canvas-confetti";
 
+
 import {
   About,
   Contact,
