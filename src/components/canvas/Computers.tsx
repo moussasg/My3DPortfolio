@@ -1,7 +1,8 @@
-import React, { lazy , Suspense, useEffect, useState } from "react";
+import React, {  Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { rocket } from "../../assets";
+import { CanvasLoader } from "..";
 
 
 const Computers: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
@@ -29,7 +30,6 @@ const Computers: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
 };
 
 const ComputersCanvas = () => {
-  const CanvasLoader = lazy(() => import('./../layout/Loader')); // Replace './MyComponent' with your actual component path
 
   const [isMobile, setIsMobile] = useState(false); // if isMobilefalse
   useEffect(() => {
