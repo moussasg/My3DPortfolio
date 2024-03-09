@@ -5,7 +5,7 @@ import { random } from "maath";
 import { TypedArray } from "three";
 import * as THREE from 'three';
 
-const Stars = (props: any) => {
+const Stars = (props: any) => { //fdsfds
   const ref = useRef<THREE.Points>();
   const [sphere] = useState<TypedArray>(() =>
     random.inSphere(new Float32Array(5001), { radius: 1.2 })
