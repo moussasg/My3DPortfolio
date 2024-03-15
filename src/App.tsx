@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import 'animate.css';
 import confetti from "canvas-confetti";
-
+import scrolup from "./assets/scrolup.png"
 
 import {
   About,
@@ -12,23 +12,52 @@ import {
   Works,
   StarsCanvas,
 } from "./components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { config } from "./constants/config";
 import { Tech } from "./components/sections/Tech";
 setTimeout(()=> {
   confetti()
 } , 1000)
+// Fonction pour suivre le défilement
 
+
+// Attacher un gestionnaire d'événements pour suivre le défilement
 const App = () => {
+  const [Arrow , setarrow] = useState(false)
   useEffect(() => {
     if (document.title !== config.html.title) {
       document.title = config.html.title;   
     }
+    function trackScrollHeight() {
+      // Obtenir la hauteur actuelle du défilement vertical
+      const scrollHeight = window.scrollY;
+    
+      // Faites quelque chose avec la hauteur du défilement
+      console.log('Hauteur du défilement vertical:', scrollHeight);
+      if (scrollHeight > 800) {
+        setarrow(!Arrow)
+      } else {
+        setarrow(false)
+      }
+    }
+    window.addEventListener('scroll', trackScrollHeight);
   }, []);
-
+  const Scrolupp = (id:any) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <BrowserRouter>
       <div className="bg-primary relative z-0">
+        <div id="firstpage"></div>
+      {Arrow ? 
+      <div className="flex flex-col items-center gap-y-1 fixed bottom-14 z-40 ... w-4 h-4 sm:w-8 sm:h-8 right-1 sm:right-4 opacity-75 sm:opacity-100" onClick={() => Scrolupp("firstpage")}>
+      <img src={scrolup}></img>
+      <p className="text-center fs-16 text-xs">To Top</p>
+      </div> 
+      : ""}
         <div className="bg-hero-pattern bg-cover bg-center bg-no-repeat">
           <Navbar />
           <Hero />

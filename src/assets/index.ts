@@ -28,7 +28,9 @@ import magazine from "./magazine.png";
 import Nextjs from "./tech/nextjs.png"
 import express from "./tech/expressjs.png"
 import damac from "./damac.png"
+import scrolup from "./../assets/scrolup.png"
 export {
+  scrolup,
   logo,
   damac,
   backend,

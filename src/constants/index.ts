@@ -31,7 +31,7 @@ import {
   Nextjs,
   botstrap,
   express,
-  damac
+  damac,
 } from "../assets";
 
 export const navLinks: TNavLink[] = [

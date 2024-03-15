@@ -5,7 +5,6 @@ import { ComputersCanvas } from "../canvas";
 import {useState , useEffect} from "react"
 import { config } from "../../constants/config";
 const Hero = () => {
-
   const [RotationLogo , setRotationLogo] = useState(false)
   useEffect(() => {
 
@@ -18,7 +17,8 @@ const Hero = () => {
       clearTimeout(timeoutId);
     };
   }, []);
-  
+
+
   return (
     <section className={`relative mx-auto h-screen w-full`}>
       <div
