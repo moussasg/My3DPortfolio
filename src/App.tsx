@@ -5,6 +5,8 @@ import scrolup from "./assets/scrolup.png";
 import ReactGA from "react-ga"
 const tracking_id = "G-X5S7FXJPC0";
 ReactGA.initialize(tracking_id)
+import { inject } from '@vercel/analytics';
+ 
 import {
   About,
   Contact,
@@ -27,6 +29,8 @@ setTimeout(()=> {
 const App = () => {
   const [Arrow , setarrow] = useState(false)
   useEffect(() => {
+    inject();
+
     ReactGA.pageview(window.location.pathname + window.location.search);
     if (document.title !== config.html.title) {
       document.title = config.html.title;   
