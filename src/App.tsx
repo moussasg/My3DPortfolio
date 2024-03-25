@@ -2,10 +2,8 @@ import { BrowserRouter } from "react-router-dom";
 import 'animate.css';
 import confetti from "canvas-confetti";
 import scrolup from "./assets/scrolup.png";
-import ReactGA from "react-ga"
-const tracking_id = "G-X5S7FXJPC0";
-ReactGA.initialize(tracking_id)
-import { inject } from '@vercel/analytics';
+import ReactGA from "react-ga" // this is for google analytics
+import { inject } from '@vercel/analytics'; 
  
 import {
   About,
@@ -27,11 +25,15 @@ setTimeout(()=> {
 
 // Attacher un gestionnaire d'événements pour suivre le défilement
 const App = () => {
+  const tracking_id = "G-X5S7FXJPC0";
   const [Arrow , setarrow] = useState(false)
   useEffect(() => {
-    inject();
-
+    ReactGA.initialize(tracking_id)
     ReactGA.pageview(window.location.pathname + window.location.search);
+
+    inject(); // this is for web analytics for next.js
+
+    ReactGA.pageview(window.location.pathname + window.location.search); // this is for google analytics
     if (document.title !== config.html.title) {
       document.title = config.html.title;   
     }
