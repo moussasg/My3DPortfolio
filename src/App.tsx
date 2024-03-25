@@ -26,14 +26,11 @@ setTimeout(()=> {
 // Attacher un gestionnaire d'événements pour suivre le défilement
 const App = () => {
   const tracking_id = "G-X5S7FXJPC0";
-  const [Arrow , setarrow] = useState(false)
+  const [Arrow , setarrow] = useState(false)  
   useEffect(() => {
     ReactGA.initialize(tracking_id)
-    ReactGA.pageview(window.location.pathname + window.location.search);
-
-    inject(); // this is for web analytics for next.js
-
     ReactGA.pageview(window.location.pathname + window.location.search); // this is for google analytics
+    inject(); // this is for web analytics for next.js
     if (document.title !== config.html.title) {
       document.title = config.html.title;   
     }
@@ -51,6 +48,7 @@ const App = () => {
     }
     window.addEventListener('scroll', trackScrollHeight);
   }, []);
+
   const Scrolupp = (id:any) => {
     const element = document.getElementById(id);
     if (element) {
