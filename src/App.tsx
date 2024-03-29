@@ -25,7 +25,7 @@ setTimeout(()=> {
 
 // Attacher un gestionnaire d'événements pour suivre le défilement
 const App = () => {
-  const tracking_id = "G-X5S7FXJPC0";
+  const tracking_id = "G-X5S7FXJPC0"; 
   const [Arrow , setarrow] = useState(false)  
   useEffect(() => {
     ReactGA.initialize(tracking_id)

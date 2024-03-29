@@ -155,7 +155,7 @@ const experiences: TExperience[] = [
     title: "Web Developer Freelancer",
     companyName: "Freelancer",
     icon: Freelancer,
-    iconBg: "#383E56",
+    iconBg: "#383E56",  
     date: "Present",
     points: [
       "Developed 35 diverse software projects (front-end and back-end).",

@@ -8,6 +8,8 @@ import { Header } from "../atoms/Header";
 import Earthcanvas from "../canvas/Earth";
 import github from "../../assets/github.png"
 import linckedin from "../../assets/in.png"
+import blog from "../../assets/blog.png"
+
 const INITIAL_STATE = Object.fromEntries(
   Object.keys(config.contact.form).map((input) => [input, ""])
 );
@@ -133,6 +135,7 @@ const Contact = () => {
     <div className="flex w-[100%] items-center justify-center mt-10 gap-x-4">
     <a href="https://github.com/moussasg" target="blank"><img src={github} className="w-10 h-10"></img></a>
     <a href="https://www.linkedin.com/in/moussa-souag-2892781b5" target="blank"><img src={linckedin} className="w-10 h-10"></img></a>
+    <a href="https://www.gogovilage.com/post/gogo-village-fostering-fun-creativity-nature-for-kids-of-all-ages" target="blank"><img src={blog} className="w-[50px] h-[50px] "></img></a>
      </div>
     </>
   );
