@@ -264,7 +264,7 @@ const projects: TProject[] = [
       },
     ],
     image: damac,
-    url: "https://real-estate-moussasg.vercel.app",
+    url: "https://damacproperties.vercel.app",
   },
   {
     name: "Magazine",
