@@ -18,7 +18,7 @@ import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import Avidhilda from "./company/avidhilda.png";
 import Halliburton from "./company/halliburton.jpg";
-import Freelancer from "./company/freelancer.jpg";
+import gogo from "./company/logogogo.png";
 import botstrap from "./tech/Bootstrap.png"
 import twentyoneia from "./twentyoneia.png";
 import oiltrading from "./tafkir.png";
@@ -51,7 +51,7 @@ export {
   typescript,
   Avidhilda,
   Halliburton,
-  Freelancer,
+  gogo,
   twentyoneia,
   oiltrading,
   avidhildaWeb,

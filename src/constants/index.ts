@@ -22,7 +22,7 @@ import {
   mongodb,
   Avidhilda,
   Halliburton,
-  Freelancer,
+  gogo,
   twentyoneia,
   oiltrading,
   ucfashion,
@@ -122,7 +122,7 @@ const technologies: TTechnology[] = [
 
 const experiences: TExperience[] = [
   {
-    title: "Data Aquisition operator, USA",
+    title: "Data Aquisition engineer, USA",
     companyName: "Halliburton - Leader Multinational Petroleum",
     icon: Halliburton,
     iconBg: "#E6DEDD",
@@ -152,14 +152,14 @@ const experiences: TExperience[] = [
     link:"https://avidhilda.com",
   },
   {
-    title: "Web Developer Freelancer",
-    companyName: "Freelancer",
-    icon: Freelancer,
+    title: "Web Developer",
+    companyName: "gogovillage dubai",
+    icon: gogo,
     iconBg: "#383E56",  
     date: "Present",
     points: [
       "Developed 35 diverse software projects (front-end and back-end).",
-      "Created a dynamic full-stack website for Furnio Company.",
+      "Created a dynamic full-stack website for damac real estate",
       "Collaborated on open-source projects.",
       "Designed and implemented UI/UX.",
     ],
