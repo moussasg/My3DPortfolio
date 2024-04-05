@@ -23,20 +23,20 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     const navbarHighlighter = () => {
-      const sections = document.querySelectorAll("section[id]");
-
+      const sections = document.querySelectorAll<HTMLElement>("section[id]");
+    
       sections.forEach((current) => {
         const sectionId = current.getAttribute("id");
         const sectionHeight = current.offsetHeight;
         const sectionTop = current.getBoundingClientRect().top - sectionHeight * 0.2;
-
+    
         if (sectionTop < 0 && sectionTop + sectionHeight > 0) {
           setActive(sectionId);
         }
       });
     };
+    
 
     window.addEventListener("scroll", navbarHighlighter);
 

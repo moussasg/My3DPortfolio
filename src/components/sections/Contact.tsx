@@ -8,7 +8,6 @@ import { Header } from "../atoms/Header";
 import Earthcanvas from "../canvas/Earth";
 import github from "../../assets/github.png"
 import linckedin from "../../assets/in.png"
-import blog from "../../assets/blog.png"
 
 const INITIAL_STATE = Object.fromEntries(
   Object.keys(config.contact.form).map((input) => [input, ""])
