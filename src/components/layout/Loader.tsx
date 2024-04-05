@@ -1,6 +1,6 @@
 
 import { Html, useProgress } from "@react-three/drei";
-
+{/* fdsf*/}
 const Loader = () => {
   const { progress } = useProgress();
   return (
