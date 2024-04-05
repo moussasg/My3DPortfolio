@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import { styles } from "../../constants/styles";
 import { navLinks } from "../../constants";
 import { logo, menu, close } from "../../assets";
 import { config } from "../../constants/config";
 
 const Navbar = () => {
-  const [active, setActive] = useState<string | null>();
+  const [active, setActive] = useState<string | null>(null);
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showCategory, setShowCategory] = useState(false); // Added state for showing/hiding category
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,10 +29,8 @@ const Navbar = () => {
 
       sections.forEach((current) => {
         const sectionId = current.getAttribute("id");
-        // @ts-ignore
         const sectionHeight = current.offsetHeight;
-        const sectionTop =
-          current.getBoundingClientRect().top - sectionHeight * 0.2;
+        const sectionTop = current.getBoundingClientRect().top - sectionHeight * 0.2;
 
         if (sectionTop < 0 && sectionTop + sectionHeight > 0) {
           setActive(sectionId);
@@ -81,6 +79,40 @@ const Navbar = () => {
               <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
+          <li
+            className="nav-item relative" // Added relative class
+            onMouseEnter={() => setShowCategory(true)}
+            onMouseLeave={() => setShowCategory(false)}
+          >
+            <div className="nav-link"> {/* Removed Alpine.js directives */}
+              Blogs 
+              <i className="absolute right-0 top-1/2 transform -translate-y-1/2 fas fa-chevron-down"></i>
+            </div>
+            {showCategory && ( // Conditionally render the dropdown based on showCategory state
+              <ul className="absolute top-full left-0 z-50 shadow-md rounded-md mt-1 space-y-2">
+                <li>
+                  <a
+                    className="block  nav-link"
+                    rel="noopener noreferrer"
+                    href="https://www.gogovilage.com/blog"
+                    target="_blank"
+                  >
+                    gogovillage
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="block  nav-link"
+                    rel="noopener noreferrer"
+                    href="https://www.be1luxury.com/blog"
+                    target="_blank"
+                  >
+                    be1luxury
+                  </a>
+                </li>
+              </ul>
+            )}
+          </li>
         </ul>
 
         <div className="flex flex-1 items-center justify-end sm:hidden">
