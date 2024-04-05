@@ -131,7 +131,7 @@ const Contact = () => {
       </motion.div>
 
     </div>
-    <br></br>
+    <br></br> {/* */}
     <div className="flex w-[100%] items-center justify-center mt-10 gap-x-4">
     <a href="https://github.com/moussasg" target="blank"><img src={github} className="w-10 h-10"></img></a>
     <a href="https://www.linkedin.com/in/moussa-souag-2892781b5" target="blank"><img src={linckedin} className="w-10 h-10"></img></a>
