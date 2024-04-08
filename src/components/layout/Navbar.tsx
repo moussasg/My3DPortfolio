@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { styles } from "../../constants/styles";
-import { navLinks } from "../../constants";
-import { logo, menu, close } from "../../assets";
-import { config } from "../../constants/config";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { styles } from '../../constants/styles';
+import { navLinks } from '../../constants';
+import { logo, menu, close } from '../../assets';
+import { config } from '../../constants/config';
 
 const Navbar = () => {
   const [active, setActive] = useState<string | null>(null);
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [showCategory, setShowCategory] = useState(false); // Added state for showing/hiding category
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,40 +17,39 @@ const Navbar = () => {
         setScrolled(true);
       } else {
         setScrolled(false);
-        setActive("");
+        setActive('');
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     const navbarHighlighter = () => {
-      const sections = document.querySelectorAll<HTMLElement>("section[id]");
-    
-      sections.forEach((current) => {
-        const sectionId = current.getAttribute("id");
+      const sections = document.querySelectorAll<HTMLElement>('section[id]');
+
+      sections.forEach(current => {
+        const sectionId = current.getAttribute('id');
         const sectionHeight = current.offsetHeight;
         const sectionTop = current.getBoundingClientRect().top - sectionHeight * 0.2;
-    
+
         if (sectionTop < 0 && sectionTop + sectionHeight > 0) {
           setActive(sectionId);
         }
       });
     };
-    
 
-    window.addEventListener("scroll", navbarHighlighter);
+    window.addEventListener('scroll', navbarHighlighter);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("scroll", navbarHighlighter);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', navbarHighlighter);
     };
   }, []);
-
+  const handleClick = (id: string) => {
+    setActive(id === active ? null : id);
+  };
   return (
     <nav
-      className={`${
-        styles.paddingX
-      } fixed top-0 z-20 flex w-full items-center py-5 ${
-        scrolled ? "bg-primary" : "bg-transparent"
+      className={`${styles.paddingX} fixed top-0 z-20 flex w-full items-center py-5 ${
+        scrolled ? 'bg-primary' : 'bg-transparent'
       }`}
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
@@ -63,56 +61,36 @@ const Navbar = () => {
           }}
         >
           <img src={logo} alt="logo" className="h-9 w-9 object-contain" />
-          <p className="flex cursor-pointer text-[18px] font-bold text-white ">
+          <p className="flex cursor-pointer text-[18px] font-bold text-white">
             {config.html.title}
           </p>
         </Link>
-
         <ul className="hidden list-none flex-row gap-10 sm:flex">
-          {navLinks.map((nav) => (
+          {navLinks.map(nav => (
             <li
               key={nav.id}
               className={`${
-                active === nav.id ? "text-white" : "text-secondary"
+                active === nav.id ? 'text-white' : 'text-secondary'
               } cursor-pointer text-[18px] font-medium hover:text-white`}
+              onClick={() => handleClick(nav.id)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
+              {active === 'blogs' &&
+                nav.subtitle && ( // Vérifier si le lien actif est 'blogs'
+                  <ul className="absolute z-50 shadow-md rounded-md mt-1 space-y-2">
+                    {nav.subtitle.map((subtitle, index) => (
+                      <li key={index}>
+                        {' '}
+                        {/*go to constants/index.ts / TNavLink*/}
+                        <a className={subtitle.className} href={subtitle.href} target="_blank">
+                          {subtitle.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
             </li>
           ))}
-          <li
-            className="nav-item relative" // Added relative class
-            onMouseEnter={() => setShowCategory(true)}
-            onMouseLeave={() => setShowCategory(false)}
-          >
-            <div className="nav-link"> {/* Removed Alpine.js directives */}
-              Blogs 
-              <i className="absolute right-0 top-1/2 transform -translate-y-1/2 fas fa-chevron-down"></i>
-            </div>
-            {showCategory && ( // Conditionally render the dropdown based on showCategory state
-              <ul className="absolute top-full left-0 z-50 shadow-md rounded-md mt-1 space-y-2">
-                <li>
-                  <a
-                    className="block  nav-link"
-                    rel="noopener noreferrer"
-                    href="https://www.gogovilage.com/blog"
-                    target="_blank"
-                  >
-                    gogovillage
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="block  nav-link"
-                    rel="noopener noreferrer"
-                    href="https://www.be1luxury.com/blog"
-                    target="_blank"
-                  >
-                    be1luxury
-                  </a>
-                </li>
-              </ul>
-            )}
-          </li>
         </ul>
 
         <div className="flex flex-1 items-center justify-end sm:hidden">
@@ -124,22 +102,33 @@ const Navbar = () => {
           />
 
           <div
-            className={`${
-              !toggle ? "hidden" : "flex"
-            } black-gradient absolute right-0 top-20 z-10 mx-4 my-2 min-w-[140px] rounded-xl p-6`}
+            className={`${ (!toggle && active !== 'blogs') ? 'hidden' : 'flex'} bg-black opacity-75 absolute right-0 top-20 z-10 mx-4 my-2 min-w-[100px] rounded-xl p-6`}
           >
             <ul className="flex flex-1 list-none flex-col items-start justify-end gap-4">
-              {navLinks.map((nav) => (
+              {navLinks.map(nav => (
                 <li
                   key={nav.id}
                   className={`font-poppins cursor-pointer text-[16px] font-medium ${
-                    active === nav.id ? "text-white" : "text-secondary"
+                    active === nav.id ? 'text-white' : 'text-secondary'
                   }`}
                   onClick={() => {
                     setToggle(!toggle);
+                    handleClick(nav.id);
                   }}
                 >
                   <a href={`#${nav.id}`}>{nav.title}</a>
+                  {active === 'blogs' && nav.subtitle && ( // Vérifier si le lien actif est 'blogs'
+                  <ul className="absolute z-50 shadow-md rounded-md mt-1 space-y-2">
+                    {nav.subtitle.map((subtitle, index) => (
+                      <li key={index} onClick={() => handleClick(nav.id)}>
+                        {/*go to constants/index.ts / TNavLink*/}
+                        <a className={subtitle.className} href={subtitle.href} target="_blank">
+                          {subtitle.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 </li>
               ))}
             </ul>

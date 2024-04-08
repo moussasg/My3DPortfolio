@@ -28,9 +28,16 @@ export type TProject = {
 
 export type TTechnology = Required<Omit<TCommonProps, "title">>;
 
-export type TNavLink = {
+interface TNavLink {
   id: string;
-} & Required<Pick<TCommonProps, "title">>;
+  title: string;
+  className?: string;
+  subtitle?: {
+    name: string;
+    className: string;
+    href: string;
+  }[];
+}
 
 export type TService = Required<Omit<TCommonProps, "name">>;
 

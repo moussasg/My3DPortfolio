@@ -42,11 +42,28 @@ export const navLinks: TNavLink[] = [
   {
     id: "work",
     title: "Work",
-  },
+  }, 
   {
     id: "contact",
     title: "Contact",
   },
+  {
+    id: "blogs",
+    title: "Blogs",
+    className: "absolute right-0 top-1/2 transform -translate-y-1/2 fas fa-chevron-down",
+    subtitle: [
+      { 
+        name: "gogovillage",
+        className: "block nav-link",
+        href: "https://www.gogovilage.com/blog"
+      },
+      {  
+        name: "be1luxury",
+        className: "block nav-link",
+        href: "https://www.be1luxury.com/blog"
+      }
+    ]
+  }
 ];
 
 const services: TService[] = [
@@ -159,7 +176,7 @@ const experiences: TExperience[] = [
     date: "Present",
     points: [
       "Developed 35 diverse software projects (front-end and back-end).",
-      "Created a dynamic full-stack website for damac real estate",
+      "Created a dynamic full-stack website for damac real estate, dubai company",
       "Collaborated on open-source projects.",
       "Designed and implemented UI/UX.",
     ],
