@@ -1,4 +1,7 @@
 import logo from "./logo.png";
+import content from "./../assets/content.png"
+import architecture from "./../assets/seo.png"
+import Freelancer from "./company/freelancer.png"
 import backend from "./backend.png";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
@@ -29,14 +32,20 @@ import Nextjs from "./tech/nextjs.png"
 import express from "./tech/expressjs.png"
 import damac from "./damac.png"
 import scrolup from "./../assets/scrolup.png"
+import seo from "./../assets/myseo.png"
+import cloud from "../assets/cube.png"
 export {
   scrolup,
+  architecture,
+  cloud,
+  seo,
   logo,
   damac,
   backend,
   creator,
   mobile,
   web,
+  content,
   ViewMyweb,
   menu,
   close,
@@ -60,5 +69,6 @@ export {
   rocket,
   Nextjs,
   botstrap,
-  express
+  express,
+  Freelancer
 };

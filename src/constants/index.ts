@@ -32,6 +32,11 @@ import {
   botstrap,
   express,
   damac,
+  Freelancer,
+  seo,
+  cloud,
+  architecture,
+  content,
 } from "../assets";
 
 export const navLinks: TNavLink[] = [
@@ -80,8 +85,24 @@ const services: TService[] = [
     icon: backend,
   },
   {
-    title: "Content Creator",
+    title: "Cybersecurity",
     icon: creator,
+  },
+  {
+    title: "SEO",               
+    icon: seo,
+  },
+  {
+    title: "Cloud Technology",                
+    icon: cloud,
+  },
+  {
+    title: "System Architecture",
+    icon: architecture,
+  },
+  {
+    title: "Content Creator",
+    icon: content,
   },
 ];
 
@@ -136,8 +157,20 @@ const technologies: TTechnology[] = [
     icon: express,
   },
 ];
-
+//Software Engineer
 const experiences: TExperience[] = [
+  {
+    title: "Software Engineer",
+    companyName: "Freelancer",
+    icon: Freelancer,
+    iconBg: "#383E56",
+    date: "2021-2022",
+    points: [
+      "Boosted efficiency with scalable architectures for enterprise clients",
+      "Enhanced release cycles and reliability with CI/CD strategies",
+    ],
+    link:"https://www.freelancer.com",
+  },
   {
     title: "Data Aquisition engineer, USA",
     companyName: "Halliburton - Leader Multinational Petroleum",
@@ -145,26 +178,23 @@ const experiences: TExperience[] = [
     iconBg: "#E6DEDD",
     date: "2022-2023",
     points: [
-      "Data Integration, Analysis and Database Management",
-      "Problem Solving, Automation, Quality Control",
-      "Real-time Updates, Data Validation",
-      "Documentation Debugging, Data Security",
+      "Enhanced server performance by optimizing configurations and implementing regular updates",
+      "Designed secure network architecture, mitigating potential risks and vulnerabilities",
+      "Simplified upgrades and maintenance with detailed database architecture documentation",
     ],
     link:"https://www.halliburton.com/",
   },
   {
-    title: "Front End Developer , Dubai",
+    title: "Software Engineer, Dubai",
     companyName: "Avidhilda",
     icon: Avidhilda,
     iconBg: "#383E56",
     date: "2023 - 2024",
     points: [
-      "Implementing Artificial Intelligence in website design",
-      "Integrating Third-Party APIs for Enhanced Functionality",
-      "Developing 3D Websites using Spline 3D and Three.js",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-      "Customizing and Extending UI Components",
-      "Designing and Developing Oil Trading Websites to Drive Business Success",
+      "Collaborated with cross-functional teams to design innovative software solutions",
+      "Developed scalable and maintainable code, ensuring long-term stability of the software",
+      "Maintained detailed documentation of development, enhancing team knowledge sharing",
+      "Optimized algorithms for faster processing, reducing overall computation time.",
     ],
     link:"https://avidhilda.com",
   },
@@ -175,9 +205,8 @@ const experiences: TExperience[] = [
     iconBg: "#383E56",  
     date: "Present",
     points: [
-      "Developed 35 diverse software projects (front-end and back-end).",
-      "Created a dynamic full-stack website for damac real estate, dubai company",
-      "Collaborated on open-source projects.",
+      "Optimize Online Presence and Performance using Wix, Google Ads campaigns.      ",
+      "Develop and Execute Integrated Digital Marketing Strategies Utilizing Google Analytics",
       "Designed and implemented UI/UX.",
     ],
     link:"https://www.freelancer.com",
