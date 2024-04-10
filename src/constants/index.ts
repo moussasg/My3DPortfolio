@@ -89,16 +89,16 @@ const services: TService[] = [
     icon: creator,
   },
   {
-    title: "SEO",               
-    icon: seo,
-  },
-  {
     title: "Cloud Technology",                
     icon: cloud,
   },
   {
     title: "System Architecture",
     icon: architecture,
+  },
+  {
+    title: "Search Engine Optimization",               
+    icon: seo,
   },
   {
     title: "Content Creator",
