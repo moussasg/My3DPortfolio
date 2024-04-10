@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import 'animate.css';
-import confetti from "canvas-confetti";
+//import confetti from "canvas-confetti";
 import scrolup from "./assets/scrolup.png";
 import ReactGA from "react-ga" // this is for google analytics
 import { inject } from '@vercel/analytics'; 
@@ -17,9 +17,7 @@ import {
 import { useEffect, useState } from "react";
 import { config } from "./constants/config";
 import { Tech } from "./components/sections/Tech";
-setTimeout(()=> {
-  confetti()
-} , 1000)
+
 // Fonction pour suivre le défilement
 
 
