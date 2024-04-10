@@ -14,7 +14,7 @@ interface IServiceCard {
   icon: string;
 }
 
-const ServiceCard: React.FC<IServiceCard> = ({ index, title, icon }) => (
+const ServiceCard: React.FC<IServiceCard> = ({  title, icon }) => (
   <Tilt
     glareEnable
     tiltEnable
@@ -24,7 +24,6 @@ const ServiceCard: React.FC<IServiceCard> = ({ index, title, icon }) => (
   >
     <div className="xs:w-[250px] w-full">
       <motion.div
-        variants={fadeIn("right", "spring", index * 0.5, 0.75)}
         className="green-pink-gradient shadow-card w-full rounded-[20px] p-[1px]"
       >
         <div className="bg-tertiary flex min-h-[280px] flex-col items-center justify-evenly rounded-[20px] px-12 py-5">
@@ -54,7 +53,7 @@ const About = () => {
       >
       </motion.p>
 
-      <div className="mt-20 flex flex-wrap gap-10 justify-center">
+      <div className="mt-20 flex flex-wrap gap-10 justify-center wow animate__animated animate__bounceInUp">
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
