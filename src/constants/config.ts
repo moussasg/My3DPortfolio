@@ -1,7 +1,8 @@
 type TSection = {
-  p: string;
+  p:string;
   h2: string;
   content?: string;
+  p2?: string;
 };
 
 type Tskils = {
@@ -35,10 +36,10 @@ type TConfig = {
     };
   } & TSection;
   sections: {
-    about: Required<TSection>;
+    about: TSection;
     experience: TSection;
     skills: Required<Tskils>;
-    works: Required<TSection>;
+    works:TSection;
   };
 };
 
@@ -67,7 +68,7 @@ export const config: TConfig = {
       },
     },
   },
-  sections: { // config.section.h2
+  sections: { // configs.sections.content
     about: {
       p: "Introduction",
       h2: "Overview.",
@@ -76,6 +77,7 @@ export const config: TConfig = {
     experience: {
       p: "What I have done so far",
       h2: "Work Experience.",
+      p2:"Click on the icons to navigate to the companies' websites."
     },
     skills: {
       h2: "Technical Skills",

@@ -209,7 +209,7 @@ const experiences: TExperience[] = [
       "Develop and Execute Integrated Digital Marketing Strategies Utilizing Google Analytics",
       "Designed and implemented UI/UX.",
     ],
-    link:"https://www.freelancer.com",
+    link:"https://www.gogovilage.com",
   },
 ];
 

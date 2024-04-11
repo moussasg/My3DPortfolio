@@ -62,7 +62,7 @@ const Experience = () => {
   return (
     <>
       <Header useMotion={true} {...config.sections.experience} />
-
+<p className="text-secondary mt-4 max-w-3xl text-[17px] leading-[30px]">{config.sections.experience.p2}</p>
       <div className="mt-20 flex flex-col">
         <VerticalTimeline>
           {experiences.map((experience, index) => (
