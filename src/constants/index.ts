@@ -308,7 +308,7 @@ const projects: TProject[] = [
         name: "Bootsrap",
         color: "green-text-gradient",
       },
-    ],
+    ], //
     image: damac,
     url: "https://damacproperties.vercel.app",
   },
