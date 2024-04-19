@@ -47,7 +47,7 @@ const App = () => {
       }
     } //
     window.addEventListener('scroll', trackScrollHeight);
-  }, []);
+  }, []); //
 
   const Scrolupp = (id:any) => {
     const element = document.getElementById(id);
