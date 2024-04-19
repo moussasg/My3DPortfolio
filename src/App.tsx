@@ -45,7 +45,7 @@ const App = () => {
       } else {
         setarrow(false)
       }
-    }
+    } //
     window.addEventListener('scroll', trackScrollHeight);
   }, []);
 
