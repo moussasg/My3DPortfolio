@@ -8,7 +8,7 @@ import { inject } from '@vercel/analytics';
 import {
   About,
   Contact,
-  Experience,
+  Experience, //
   Hero,
   Navbar,
   Works,
