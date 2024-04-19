@@ -299,7 +299,7 @@ const projects: TProject[] = [
       {
         name: "Turn.js",
         color: "blue-text-gradient",
-      },
+      },//
       {
         name: "PHP",
         color: "green-text-gradient",
