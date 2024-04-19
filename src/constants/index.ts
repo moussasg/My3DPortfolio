@@ -255,7 +255,7 @@ const projects: TProject[] = [
       },
     ],
     image: ucfashion,
-    url: "https://ucfashionweek.com",
+    url: "https://ucfashion.vercel.app",
   },
   {
     name: "Oil Trading",
@@ -272,7 +272,7 @@ const projects: TProject[] = [
       },
     ],
     image: oiltrading,
-    url: "https://thoiltrading.com",
+    url: "https://oiltrading.vercel.app",
   },
   {
     name: "Avidhilda",

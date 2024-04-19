@@ -52,7 +52,6 @@ const About = () => {
         className="text-secondary mt-4 max-w-3xl text-[17px] leading-[30px]"
       >
                 {config.sections.about.content}
-        
       </motion.p>
 
       <div className="mt-20 flex flex-wrap gap-10 justify-center">
