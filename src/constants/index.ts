@@ -296,7 +296,7 @@ const projects: TProject[] = [
     url: "https://avidhilda.com",
   },
   {
-    name: "DAMAC UAE",
+    name: "DAMAC UAE", //
     description:
       "DAMAC Properties is a leading luxury real estate developer in the Middle East, with a track record of delivering some of the most iconic and innovative properties in the region. Founded in 2002, the company has quickly become a household name in the industry",
     tags: [
