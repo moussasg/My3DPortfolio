@@ -26,7 +26,7 @@ import {
   twentyoneia,
   oiltrading,
   ucfashion,
-  avidhildaWeb,
+  gogowalpaper,
   magazine,
   Nextjs,
   botstrap,
@@ -234,7 +234,7 @@ const projects: TProject[] = [
       },
     ],
     image: twentyoneia,
-    url: "https://www.twenty-one-ai.com",
+    url: "https://twentyoneia.vercel.app",
   },
   {
     name: "Universal Couture",
@@ -275,27 +275,6 @@ const projects: TProject[] = [
     url: "https://oiltrading.vercel.app",
   },
   {
-    name: "Avidhilda",
-    description:
-      "Avid Hilda is a premier exhibition organizing company based in the vibrant city of Dubai, at the crossroads of innovation and commerce,",
-    tags: [
-      {
-        name: "React.Js",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "Laravel",
-        color: "green-text-gradient",
-      },
-      {
-        name: "MySQL",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: avidhildaWeb,
-    url: "https://avidhilda.com",
-  },
-  {
     name: "DAMAC UAE", //
     description:
       "DAMAC Properties is a leading luxury real estate developer in the Middle East, with a track record of delivering some of the most iconic and innovative properties in the region. Founded in 2002, the company has quickly become a household name in the industry",
@@ -328,6 +307,19 @@ const projects: TProject[] = [
     ],
     image: magazine,
     url: "https://profile.avidhilda.com",
+  },
+  {
+    name: "GogoVillage",
+    description:
+      "Gogo village, is a family owned & operated business with LOVE  to create fun ,creative & nature with cleanliness safety & affordability for crawlers to preteens alike. based in uae",
+    tags: [
+      {
+        name: "Wix",
+        color: "blue-text-gradient",
+      },
+    ],
+    image: gogowalpaper,
+    url: "https://www.gogovilage.com",
   },
 ];
 

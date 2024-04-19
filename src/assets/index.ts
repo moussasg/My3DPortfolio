@@ -26,7 +26,7 @@ import botstrap from "./tech/Bootstrap.png"
 import twentyoneia from "./twentyoneia.png";
 import oiltrading from "./tafkir.png";
 import ucfashion from "./universelcoture.png";
-import avidhildaWeb from "./avidhildaweb.png";
+import gogowalpaper from "./gogo.jpeg";
 import magazine from "./magazine.png";
 import Nextjs from "./tech/nextjs.png"
 import express from "./tech/expressjs.png"
@@ -63,7 +63,7 @@ export {
   gogo,
   twentyoneia,
   oiltrading,
-  avidhildaWeb,
+  gogowalpaper,
   ucfashion,
   magazine,
   rocket,
