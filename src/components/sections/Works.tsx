@@ -39,6 +39,7 @@ const ProjectCard: React.FC<{ index: number } & TProject> = ({
                 onClick={() => window.open(url, "_blank")}
                 className="black-gradient flex h-10 w-10 cursor-pointer items-center justify-center rounded-full"
               >
+                {/* */}
                 <img
                   src={ViewMyweb}
                   alt="ViewMyweb"
