@@ -58,6 +58,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="bg-primary relative z-0">
+      <StarsCanvas />
         <div id="firstpage"></div>
       {Arrow ? 
       <div className="flex flex-col items-center gap-y-1 fixed bottom-14 z-40 ... w-4 h-4 sm:w-8 sm:h-8 right-1 sm:right-4 opacity-75 sm:opacity-100" onClick={() => Scrolupp("firstpage")}>
@@ -75,7 +76,6 @@ const App = () => {
         <Works />
         <div className="relative z-0">
           <Contact />
-          <StarsCanvas />
         </div>
       </div>
     </BrowserRouter>

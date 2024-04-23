@@ -4,7 +4,7 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { rocket } from "../../assets";
 import { CanvasLoader } from "..";
 
-
+//Three.js has built-in support for loading and displaying GLTF models through the 'GLTFLoader' module
 const Computers: React.FC<{ isMobile: boolean }> = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
   return (
