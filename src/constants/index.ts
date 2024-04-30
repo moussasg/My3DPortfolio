@@ -203,7 +203,7 @@ const experiences: TExperience[] = [
     companyName: "gogovillage dubai",
     icon: gogo,
     iconBg: "#383E56",  
-    date: "Present",
+    date: "2024",
     points: [
       "Optimize Online Presence and Performance using Wix, Google Ads campaigns.      ",
       "Develop and Execute Integrated Digital Marketing Strategies Utilizing Google Analytics",
