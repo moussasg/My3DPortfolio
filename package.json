@@ -16,6 +16,7 @@
     "@react-three/fiber": "^8.11.1",
     "@splinetool/react-spline": "github:splinetool/react-spline",
     "@vercel/analytics": "^1.2.2",
+    "@vercel/speed-insights": "^1.0.10",
     "animate.css": "^4.1.1",
     "canvas-confetti": "^1.9.2",
     "framer-motion": "^9.0.7",
