@@ -9,7 +9,7 @@ import web from "./web.png";
 import ViewMyweb from "./viewMyweb.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
-import rocket from "./rocket.gif"
+import rocket from "./rocket.webp"
 import css from "./tech/css.png";
 import html from "./tech/html.png";
 import javascript from "./tech/javascript.png";
