@@ -30,11 +30,11 @@ const Hero = () => {
         </div>
 
         <div className="flex flex-col gap-y-2 sm:gap-y-4">
-          <div className="flex gap-x-2 sm:gap-x-4 animate__animated animate__bounceInLeft animate__slow"> 
+          <div className="flex gap-x-2 sm:gap-x-4"> 
         <h1 className={`${styles.heroHeadText} text-white  whitespace-nowrap`}>
             Hi, I'm 
           </h1>
-          <div className={`${styles.heroHeadText} text-white`}>
+          <div className={`${styles.heroHeadText} text-white animate__animated animate__backInUp`}>
           <span className="text-[#915eff]">Moussa</span>
           </div>
           </div>
