@@ -11,7 +11,7 @@ const Hero = () => {
   
     const timeoutId = setTimeout(() => {
       setRotationLogo(true)
-    }, 2000);
+    }, 1000);
   
     return () => {
       clearTimeout(timeoutId);
