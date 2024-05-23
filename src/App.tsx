@@ -55,7 +55,7 @@ const App = () => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-  return (
+  return ( //
     <BrowserRouter>
       <div className="bg-primary relative z-0">
       <SpeedInsights/>
