@@ -51,7 +51,7 @@ export const config: TConfig = {
   },
   hero: { 
     name: "Moussa Souag",
-    p: ["I Develop 3D Visuals, User", "Interfaces And Web Applications"],
+    p: ["I craft engaging 3D visuals, user interfaces, and SEO-optimized web applications" , "I bring technical expertise to life"],
   },
   contact: {
     p: "Get in touch",
@@ -70,7 +70,7 @@ export const config: TConfig = {
   },
   sections: { // configs.sections.content
     about: {
-      p: "Introduction",
+      p: "Introduction", //
       h2: "Overview.",
       content: "As a skilled Software Engineer, I bring expertise in TypeScript, JavaScript, React, and frameworks like Next.js. With experience in USA multinational petroleum companies and Dubai media companies, I excel in creating efficient, scalable solutions. I'm known for quick learning and close collaboration with clients to solve real-world problems. Let's work together to bring your ideas to life ! ",
     },
