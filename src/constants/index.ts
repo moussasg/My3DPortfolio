@@ -364,7 +364,7 @@ const projects: TProject[] = [
       },
     ],
     image: magazine,
-    url: "https://profile.avidhilda.com",
+    url: "https://mymagazine.vercel.app/",
   }
 ];
 
