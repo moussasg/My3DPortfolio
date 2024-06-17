@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom"; //
 import 'animate.css';
 import confetti from "canvas-confetti";
 import scrolup from "./assets/scrolup.png";
