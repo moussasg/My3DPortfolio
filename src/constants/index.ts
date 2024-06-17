@@ -37,6 +37,8 @@ import {
   cloud,
   architecture,
   content,
+  Blinx,
+  Blinxhome,
 } from "../assets";
 
 export const navLinks: TNavLink[] = [
@@ -199,8 +201,8 @@ const experiences: TExperience[] = [
     link:"https://avidhilda.com",
   },
   {
-    title: "Web Developer",
-    companyName: "gogovillage dubai",
+    title: "Web Developer, Dubai",
+    companyName: "gogovillage",
     icon: gogo,
     iconBg: "#383E56",  
     date: "2024", // d
@@ -211,10 +213,53 @@ const experiences: TExperience[] = [
     ],
     link:"https://www.gogovilage.com",
   },
+  {
+    title: "Web & SEO Specialist, Dubai",
+    companyName: "Blinx, UAE government company",
+    icon: Blinx,
+    iconBg: "#383E56",  
+    date: "2024", 
+    points: [
+      "Developed and implemented a script for SEO optimization, generating over 20,000 metadata entries with structured information architecture (IA)",
+      "Creating a robust Node.Js script to identify and fill in missing meta data for over 20,000 web pages, significantly improving the company's search engine optimization (SEO) efforts.",
+      "resolve indexing issues and non-tracking problems across various search engines(Google, Bing, Yandex, Baidu), ensuring comprehensive SEO coverage.",
+      "Leveraging advanced SEO tools like: Semrush, Screaming Frog SEO Spider to optimize company's web presence."
+    ],
+    link:"https://blinx.com",
+  }
 ];
 
 
 const projects: TProject[] = [
+  {
+    name: "First Digital Storytelling Hub in MENA",
+    description:
+      "Headquartered in Dubai Media City, blinx will target Gen Z and Millennials in the Middle East and beyond, on multiple platforms, soon.",
+    tags: [
+      {
+        name: "Next.Js",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "Node.Js",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Flutter",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "Java",
+        color: "white",
+      },
+      {
+        name: "Chakra UI",
+        color: "purple",
+      },
+    ],
+    image: Blinxhome,
+    url: "https://blinx.com",
+  },
   {
     name: "Artificial intelligence",
     description:
@@ -292,6 +337,19 @@ const projects: TProject[] = [
     url: "https://damacproperties.vercel.app",
   },
   {
+    name: "GogoVillage",
+    description:
+      "Gogo village, is a family owned & operated business with LOVE  to create fun ,creative & nature with cleanliness safety & affordability for crawlers to preteens alike. based in uae",
+    tags: [
+      {
+        name: "Wix",
+        color: "blue-text-gradient",
+      },
+    ],
+    image: gogowalpaper,
+    url: "https://www.gogovilage.com",
+  },
+  {
     name: "Magazine",
     description:
       "engaging platform for readers to explore diverse content, stay informed on current events, trends, and topics of interest, while fostering a sense of community and offering a visually appealing and user-friendly experience.",
@@ -306,21 +364,8 @@ const projects: TProject[] = [
       },
     ],
     image: magazine,
-    url: "https://profile.avidhilda.com",
-  },
-  {
-    name: "GogoVillage",
-    description:
-      "Gogo village, is a family owned & operated business with LOVE  to create fun ,creative & nature with cleanliness safety & affordability for crawlers to preteens alike. based in uae",
-    tags: [
-      {
-        name: "Wix",
-        color: "blue-text-gradient",
-      },
-    ],
-    image: gogowalpaper,
-    url: "https://www.gogovilage.com",
-  },
+    url: "https://mymagazine.vercel.app/", ////
+  }
 ];
 
 export { services, technologies, experiences,  projects };

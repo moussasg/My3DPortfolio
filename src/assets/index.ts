@@ -1,4 +1,6 @@
 import logo from "./logo.png";
+import Blinxhome from "./blinxhome.jpg"
+import Blinx from "./company/blinx_logo.png"
 import content from "./../assets/content.png"
 import architecture from "./../assets/seo.png"
 import Freelancer from "./company/freelancer.png"
@@ -35,6 +37,7 @@ import scrolup from "./../assets/scrolup.png"
 import seo from "./../assets/myseo.png"
 import cloud from "../assets/cube.png"
 export {
+  Blinxhome,
   scrolup,
   architecture,
   cloud,
@@ -70,5 +73,6 @@ export {
   Nextjs,
   botstrap,
   express,
-  Freelancer
+  Freelancer,
+  Blinx
 };
