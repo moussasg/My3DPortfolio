@@ -51,7 +51,7 @@ export const config: TConfig = {
   },
   hero: { 
     name: "Moussa Souag",
-    p: ["I craft engaging 3D visuals, user interfaces, and SEO-optimized web applications" , "I bring technical expertise to life"],
+    p: ["I craft engaging 3D visuals, user interfaces, and SEO-optimized web applications. I bring technical expertise to life."],//
   },
   contact: {
     p: "Get in touch",
