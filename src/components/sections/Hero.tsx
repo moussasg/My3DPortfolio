@@ -34,11 +34,11 @@ const Hero = () => {
         <h1 className={`${styles.heroHeadText} text-white  whitespace-nowrap`}>
             Hi, I'm 
           </h1>
-          <div className={`${styles.heroHeadText} text-white animate__animated animate__backInUp`}>
+          <div className={`${styles.heroHeadText} text-white`}>
           <span className="text-[#915eff]">Moussa</span>
           </div>
           </div>
-          <div className={`${styles.heroSubText} items-start w-[100%] animate__animated animate__backInUp animate__slow`}>
+          <div className={`${styles.heroSubText} items-start w-[100%]`}>
             {config.hero.p[0]} <br/>
             {config.hero.p[1]}
           </div>
