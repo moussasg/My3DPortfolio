@@ -227,6 +227,10 @@ const projects: TProject[] = [
         color: "white",
       },
       {
+        name: "PostgreSQL",
+        color: "black",
+      },
+      {
         name: "Chakra UI",
         color: "purple",
       },
