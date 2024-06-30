@@ -1,7 +1,7 @@
 import React, {  Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-import { rocket } from "../../assets";
+import { rocket } from "../../assets"
 import { CanvasLoader } from "..";
 
 //Three.js has built-in support for loading and displaying GLTF models through the 'GLTFLoader' module
@@ -57,7 +57,7 @@ const ComputersCanvas = () => {
     <>
       {isMobile ? (
         <div className="flex h-[100vh] items-center justify-center wow animate__animated animate__bounceInUp"> 
-        <img src={rocket} className="h-[100px] w-[100px]"></img>
+        <img src={rocket} className="h-[100px] w-[100px] relative top-12"></img>
         </div>
       ) : (
         <Canvas
