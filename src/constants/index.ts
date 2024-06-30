@@ -22,7 +22,6 @@ import {
   mongodb,
   Avidhilda,
   Halliburton,
-  gogo,
   twentyoneia,
   oiltrading,
   ucfashion,
@@ -32,7 +31,6 @@ import {
   botstrap,
   express,
   damac,
-  Freelancer,
   seo,
   cloud,
   architecture,
@@ -162,29 +160,19 @@ const technologies: TTechnology[] = [
 //Software Engineer
 const experiences: TExperience[] = [
   {
-    title: "Software Engineer",
-    companyName: "Freelancer",
-    icon: Freelancer,
-    iconBg: "#383E56",
-    date: "2021-2022",
+    title: "Web & SEO Specialist, Dubai",
+    companyName: "Blinx, UAE government company",
+    icon: Blinx,
+    iconBg: "#383E56",  
+    date: "2024", 
     points: [
-      "Boosted efficiency with scalable architectures for enterprise clients",
-      "Enhanced release cycles and reliability with CI/CD strategies",
+      "Developed and programmed scripts for SEO optimization, generating 20,000+ metadata entries following SEO best practices.",
+      "Achieved a significant 94% increase in search engine visibility and organic traffic through strategic SEO initiatives.",
+      "Resolved technical issues across major search engines (Google, Bing, Yandex, Baidu), including crawl errors, indexing, site speed optimization, and managing sitemap and robots.txt directives.",
+      "Conducted regular SEO audits and provided actionable recommendations for continuous improvement",
+      "Conducted robust performance and content monitoring using SEO tools, delivering weekly reports to stakeholders."
     ],
-    link:"https://www.freelancer.com",
-  },
-  {
-    title: "Data Aquisition engineer, USA",
-    companyName: "Halliburton - Leader Multinational Petroleum",
-    icon: Halliburton,
-    iconBg: "#E6DEDD",
-    date: "2022-2023",
-    points: [
-      "Enhanced server performance by optimizing configurations and implementing regular updates",
-      "Designed secure network architecture, mitigating potential risks and vulnerabilities",
-      "Simplified upgrades and maintenance with detailed database architecture documentation",
-    ],
-    link:"https://www.halliburton.com/",
+    link:"https://blinx.com",
   },
   {
     title: "Software Engineer, Dubai",
@@ -193,40 +181,26 @@ const experiences: TExperience[] = [
     iconBg: "#383E56",
     date: "2023 - 2024",
     points: [
-      "Collaborated with cross-functional teams to design innovative software solutions",
+      "Collaborated with cross-functional teams to design innovative software solutions,resulting in a 85% increase in project efficiency and on-time delivery.",
       "Developed scalable and maintainable code, ensuring long-term stability of the software",
-      "Maintained detailed documentation of development, enhancing team knowledge sharing",
       "Optimized algorithms for faster processing, reducing overall computation time.",
+      "Maintained detailed documentation of development, enhancing team knowledge sharing."
     ],
     link:"https://avidhilda.com",
   },
   {
-    title: "Web Developer, Dubai",
-    companyName: "gogovillage",
-    icon: gogo,
-    iconBg: "#383E56",  
-    date: "2024", // d
+    title: "Sofrware Engineer, USA",
+    companyName: "Halliburton - Leader Multinational Petroleum",
+    icon: Halliburton,
+    iconBg: "#E6DEDD",
+    date: "2022-2023",
     points: [
-      "Optimize Online Presence and Performance using Wix, Google Ads campaigns.",
-      "Develop and Execute Integrated Digital Marketing Strategies Utilizing Google Analytics",
-      "Designed and implemented UI/UX.",
+      "Designed secure network architecture to mitigate potential risks and vulnerabilities",
+      "Enhanced server performance by optimizing configurations and implementing regular updates",
+      "Simplified upgrades and maintenance with detailed database architecture documentation",
     ],
-    link:"https://www.gogovilage.com",
+    link:"https://www.halliburton.com/",
   },
-  {
-    title: "Web & SEO Specialist, Dubai",
-    companyName: "Blinx, UAE government company",
-    icon: Blinx,
-    iconBg: "#383E56",  
-    date: "2024", 
-    points: [
-      "Developed and implemented a script for SEO optimization, generating over 20,000 metadata entries with structured information architecture (IA)",
-      "Creating a robust Node.Js script to identify and fill in missing meta data for over 20,000 web pages, significantly improving the company's search engine optimization (SEO) efforts.",
-      "resolve indexing issues and non-tracking problems across various search engines(Google, Bing, Yandex, Baidu), ensuring comprehensive SEO coverage.",
-      "Leveraging advanced SEO tools like: Semrush, Screaming Frog SEO Spider to optimize company's web presence."
-    ],
-    link:"https://blinx.com",
-  }
 ];
 
 
