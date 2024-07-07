@@ -31,7 +31,7 @@ const Hero = () => {
 
         <div className="flex flex-col gap-y-2 sm:gap-y-4">
           <div className="flex gap-x-2 sm:gap-x-4"> 
-        <h1 className={`${styles.heroHeadText} text-white  whitespace-nowrap`}>
+        <h1 className={`${styles.heroHeadText} text-white whitespace-nowrap`}>
             Hi, I'm 
           </h1>
           <div className={`${styles.heroHeadText} text-white`}>
