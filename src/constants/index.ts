@@ -166,7 +166,7 @@ const experiences: TExperience[] = [
     iconBg: "#383E56",  
     date: "2024", 
     points: [
-      "Generated over 20,000 metadata entries adhering to SEO best practices, resulting in nearly a 99% increase in indexed pages on Google.",
+      "Generated over 20,000 missing metadata entries adhering to SEO best practices, resulting in nearly a 99% increase in indexed pages on Google.",
       "Achieved a 98% reduction in total issues, addressing missing descriptions and keywords, server errors, broken links, incorrect URLs, sitemap/robots.txt errors, and slow-loading pages.",
       "Resolved technical issues across major search engines (Google, Bing, Yandex, Baidu), including crawl errors, indexing, site speed optimization, and managing sitemap and robots.txt directives.",
       "Conducted regular SEO audits and provided actionable recommendations for continuous improvement",
