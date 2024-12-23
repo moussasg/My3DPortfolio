@@ -161,7 +161,7 @@ const technologies: TTechnology[] = [
 const experiences: TExperience[] = [
   {
     title: "Web & SEO Specialist, Dubai",
-    companyName: "Blinx, UAE government company",
+    companyName: "Blinx, UAE company",
     icon: Blinx,
     iconBg: "#383E56",  
     date: "2024", 
