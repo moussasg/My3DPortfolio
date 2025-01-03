@@ -45,7 +45,7 @@ type TConfig = {
 
 export const config: TConfig = {
   html: {
-    title: "My 3D Portfolio",
+    title: "the best 3d portfolio built with react js 2025",
     fullName: "Moussa Souag",
     email: "moussaswag5@mail.com",
   },
