@@ -45,13 +45,13 @@ type TConfig = {
 
 export const config: TConfig = {
   html: {
-    title: "the best 3d portfolio built with react js 2025",
+    title: "Moussa | QA Automation Engineer – Playwright & TypeScript",
     fullName: "Moussa Souag",
     email: "moussaswag5@mail.com",
   },
   hero: { 
     name: "Moussa Souag",
-    p: ["As a passionate Software Engineer, I specialize in crafting intuitive user interfaces and SEO-optimized web applications, bringing technical expertise to life and transforming ideas into engaging digital experiences."],//
+    p: ["QA Automation Engineer with 3 years of experience and a software engineering background. I design maintainable Playwright and TypeScript test frameworks, run them in CI/CD pipelines, and turn complex user flows into stable, automated tests that protect product quality."],
   },
   contact: {
     p: "Get in touch",
@@ -72,7 +72,7 @@ export const config: TConfig = {
     about: {
       p: "Introduction", //
       h2: "Overview.",
-      content: "As a skilled Software Engineer and SEO Specialist, I bring expertise in TypeScript, JavaScript, React, and frameworks like Next.js. With experience in USA multinational petroleum companies and Dubai media companies, I excel in creating efficient, scalable solutions. I'm known for quick learning and close collaboration with clients to solve real-world problems. Let's work together to bring your ideas to life ! ",
+      content: "Automated QA Engineer specializing in Playwright and TypeScript, with a developer’s background in React, Next.js and Node.js. I build Page Object Model test suites covering E2E, API, visual regression, and accessibility, run in CI/CD (GitHub Actions, Bitbucket), Linear for bug tracking. Experienced with a U.S. multinational petroleum company and Dubai media companies. Quick learner and collaborative. ! ",
     },
     experience: {
       p: "What I have done so far",
@@ -89,7 +89,7 @@ export const config: TConfig = {
     real-world examples of my work. Each project is briefly described with
      live demos in it. It reflects my
     ability to solve complex problems, work with different technologies,
-    and manage projects effectively. Click on the picture to navigate to my website.`,
+    and manage projects effectively. Click on the picture to navigate to colaborated website.`,
     },
   },
 };

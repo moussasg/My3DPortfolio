@@ -51,7 +51,26 @@ const ProjectCard: React.FC<{ index: number } & TProject> = ({
           </div>
           <div className="mt-5">
             <h3 className="text-[24px] font-bold text-white">{name}</h3>
-            <p className="text-secondary mt-2 text-[14px]">{description}</p>
+            <p className="text-secondary mt-2 text-[14px]">
+              {description
+                .split(
+                  /(Designed by me, developed from scratch by me, from concept to final implementation\.|Designed and developed from scratch by me|Designed by me)/
+                )
+                .map((part, i) =>
+                  /^(Designed by me, developed from scratch by me, from concept to final implementation\.|Designed and developed from scratch by me|Designed by me)$/.test(
+                    part
+                  ) ? (
+                    <span
+                      key={i}
+                      className="font-semibold bg-gradient-to-r from-[#915eff] via-[#00c2cb] to-[#915eff] bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(145,94,255,0.6)]"
+                    >
+                      {part}
+                    </span>
+                  ) : (
+                    part
+                  )
+              )}
+            </p>
           </div>
           <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((tag) => (

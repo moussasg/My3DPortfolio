@@ -1,4 +1,7 @@
 import logo from "./logo.png";
+import swagger from "./swagger.png"
+import katalon from "./katalonstudio.png"
+import linear from "./linear.png";
 import Blinxhome from "./blinxhome.jpg"
 import Blinx from "./company/blinx_logo.png"
 import content from "./../assets/content.png"
@@ -29,6 +32,20 @@ import gogowalpaper from "./gogo.jpeg";
 import magazine from "./magazine.png";
 import Nextjs from "./tech/nextjs.png"
 import express from "./tech/expressjs.png"
+import playwright from "./tech/playwright.svg"
+import git from "./tech/git.png"
+import githubactions from "./tech/githubactions.svg"
+import docker from "./tech/docker.svg"
+import postman from "./tech/postman.svg"
+import selenium from "./tech/selenium.svg"
+import jest from "./tech/jest.svg"
+import jira from "./tech/jira.svg"
+import linux from "./tech/linux.svg"
+import mysql from "./tech/mysql.svg"
+import cypress from "./tech/cypress.svg"
+import cucumber from "./tech/cucumber.svg"
+import jenkins from "./tech/jenkins.svg"
+import appium from "./tech/appium.svg"
 import damac from "./damac.png"
 import scrolup from "./../assets/scrolup.png"
 import seo from "./../assets/myseo.png"
@@ -68,5 +85,22 @@ export {
   Nextjs,
   botstrap,
   express,
-  Blinx
+  playwright,
+  git,
+  githubactions,
+  docker,
+  postman,
+  selenium,
+  jest,
+  jira,
+  linux,
+  mysql,
+  cypress,
+  cucumber,
+  jenkins,
+  appium,
+  Blinx,
+  linear,
+  swagger,
+  katalon
 };

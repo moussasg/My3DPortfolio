@@ -16,6 +16,7 @@ import {
 } from "./components";
 import { useEffect, useState } from "react";
 import { config } from "./constants/config";
+import Splash from "./components/layout/Splash";
 import { Tech } from "./components/sections/Tech";
 setTimeout(()=> {
   confetti()
@@ -27,6 +28,7 @@ setTimeout(()=> {
 const App = () => {
   const tracking_id = "G-X5S7FXJPC0"; 
   const [Arrow , setarrow] = useState(false)  
+  const [showSplash, setShowSplash] = useState(true);  
   useEffect(() => {
     ReactGA.initialize(tracking_id)
     ReactGA.pageview(window.location.pathname + window.location.search); // this is for google analytics
@@ -58,6 +60,7 @@ const App = () => {
   return ( //
     <BrowserRouter>
       <div className="bg-primary relative z-0">
+      {showSplash && <Splash onDone={() => setShowSplash(false)} />}
       <SpeedInsights/>
         <div id="firstpage"></div>
       {Arrow ? 

@@ -8,18 +8,11 @@ import type {
 
 import {
   mobile,
-  backend,
-  creator,
-  web,
   javascript,
   typescript,
   html,
   css,
-  reactjs,
-  redux,
-  tailwind,
   nodejs,
-  mongodb,
   Avidhilda,
   Halliburton,
   twentyoneia,
@@ -27,16 +20,18 @@ import {
   ucfashion,
   gogowalpaper,
   magazine,
-  Nextjs,
-  botstrap,
-  express,
+  playwright,
+  git,
+  githubactions,
+  postman,
   damac,
   seo,
-  cloud,
-  architecture,
-  content,
   Blinx,
   Blinxhome,
+  linear,
+  swagger,
+  katalon,
+  cloud
 } from "../assets";
 
 export const navLinks: TNavLink[] = [
@@ -52,130 +47,69 @@ export const navLinks: TNavLink[] = [
     id: "contact",
     title: "Contact",
   },
-  {
-    id: "blogs",
-    title: "Blogs",
-    className: "absolute right-0 top-1/2 transform -translate-y-1/2 fas fa-chevron-down",
-    subtitle: [
-      { 
-        name: "gogovillage",
-        className: "block nav-link",
-        href: "https://www.gogovilage.com/blog"
-      },
-      {  
-        name: "be1luxury",
-        className: "block nav-link",
-        href: "https://www.be1luxury.com/blog"
-      }
-    ]
-  }
 ];
 
 const services: TService[] = [
   {
-    title: "Front End Developer",
+    title: "QA Automation",
     icon: mobile,
   },
   {
-    title: "Backend Developer",
-    icon: backend,
-  },
-  {
-    title: "Cybersecurity",
-    icon: creator,
-  },
-  {
-    title: "Cloud Technology",                
+    title: "Front End",
     icon: cloud,
-  },
-  {
-    title: "System Architecture",
-    icon: architecture,
   },
   {
     title: "Search Engine Optimization",               
     icon: seo,
   },
-  {
-    title: "Content Creator",
-    icon: content,
-  },
-  {
-    title: "UI/UX Developer",
-    icon: web,
-  },
 ];
 
 const technologies: TTechnology[] = [
-  {
-    name: "HTML 5",
-    icon: html,
-  },
-  {
-    name: "CSS 3",
-    icon: css,
-  },
-  {
-    name: "JavaScript",
-    icon: javascript,
-  },
-  {
-    name: "TypeScript",
-    icon: typescript,
-  },
-  {
-    name: "React JS",
-    icon: reactjs,
-  },
-
-  {
-    name: "Redux Toolkit",
-    icon: redux,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  },
-  {
-    name: "Node JS",
-    icon: nodejs,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-  }, 
-  {
-    name: "Next.Js",
-    icon: Nextjs,
-  },
-  {
-    name: "Bootsrtap",
-    icon: botstrap,
-  },
-  {
-    name: "Express.Js",
-    icon: express,
-  },
+  { name: "Playwright", icon: playwright },
+  { name: "TypeScript", icon: typescript },
+  { name: "JavaScript", icon: javascript },
+  { name: "Node.js", icon: nodejs },
+  { name: "REST API", icon: swagger },
+  { name: "Postman", icon: postman },
+  { name: "Git", icon: git },
+  { name: "GitHub Actions", icon: githubactions },
+  { name: "Linear", icon: linear},
+  { name: "HTML 5", icon: html },
+  { name: "CSS 3", icon: css },
+  { name: "Katalon", icon: katalon }
 ];
 //Software Engineer
 const experiences: TExperience[] = [
   {
-    title: "Web & SEO Specialist, Dubai",
+    title: "QA Engineer, Dubai",
     companyName: "Blinx, UAE company",
     icon: Blinx,
     iconBg: "#383E56",  
-    date: "2024", 
+    date: "2025-2026", 
+    points: [
+      "Reported approximately 10 bugs per day through manual testing, documenting defects and reproduction steps.",
+      "Used Playwright, Katalon Studio to automate tests for articles, programs, documentaries, and shows across a large content platform with 50,000+ pages.",
+      "Tested page functionality, UI elements, navigation, and content consistency to identify defects and regressions.",
+      "Executed automated tests to support website quality assurance across multiple content types, including articles, programs, documentaries, and shows.",
+    ],
+    link:"https://blinx.com",
+  },
+  {
+    title: "SEO Specialist, Dubai",
+    companyName: "Blinx, UAE company",
+    icon: Blinx,
+    iconBg: "#383E56",  
+    date: "2024-2025", 
     points: [
       "Generated over 20,000 missing metadata entries adhering to SEO best practices, resulting in nearly a 99% increase in indexed pages on Google.",
       "Achieved a 98% reduction in total issues, addressing missing descriptions and keywords, server errors, broken links, incorrect URLs, sitemap/robots.txt errors, and slow-loading pages.",
       "Resolved technical issues across major search engines (Google, Bing, Yandex, Baidu), including crawl errors, indexing, site speed optimization, and managing sitemap and robots.txt directives.",
       "Conducted regular SEO audits and provided actionable recommendations for continuous improvement",
-      "Conducted robust performance and content monitoring using SEO tools, delivering weekly reports to stakeholders."
     ],
     link:"https://blinx.com",
   },
   {
-    title: "Software Engineer, Dubai",
+    title: "Front End Developer, Dubai",
     companyName: "Avidhilda",
     icon: Avidhilda,
     iconBg: "#383E56",
@@ -186,18 +120,19 @@ const experiences: TExperience[] = [
       "Optimized algorithms for faster processing, reducing overall computation time.",
       "Maintained detailed documentation of development, enhancing team knowledge sharing."
     ],
-    link:"https://avidhilda.com",
+    link:"https://ucfashion.vercel.app",
   },
   {
-    title: "Sofrware Engineer, USA",
+    title: "Data Quality Assurance — Well Test Operations, USA",
     companyName: "Halliburton - Leader Multinational Petroleum",
     icon: Halliburton,
     iconBg: "#E6DEDD",
     date: "2022-2023",
     points: [
-      "Designed secure network architecture to mitigate potential risks and vulnerabilities",
-      "Enhanced server performance by optimizing configurations and implementing regular updates",
-      "Simplified upgrades and maintenance with detailed database architecture documentation",
+      "Validated well test data, including pressure, temperature, and flow rates, for accuracy and consistency.",
+      "Identified missing, inconsistent, or anomalous data in operational records and reports.",
+      "Cross-checked field measurements, calculations, and units to ensure data integrity.",
+      "Documented discrepancies and verified report completeness before submission."
     ],
     link:"https://www.halliburton.com/",
   },
@@ -241,7 +176,7 @@ const projects: TProject[] = [
   {
     name: "Artificial intelligence",
     description:
-      "21AI Research stands as a beacon of innovation in the field of Artificial Intelligence and Machine Learning, nestled in the vibrant business landscape of Dubai, UAE.",
+      "Designed by me, 21AI Research stands as a beacon of innovation in the field of Artificial Intelligence and Machine Learning, nestled in the vibrant business landscape of Dubai, UAE.",
     tags: [
       {
         name: "Next.Js",
@@ -298,9 +233,9 @@ const projects: TProject[] = [
     url: "https://oiltrading.vercel.app",
   },
   {
-    name: "DAMAC UAE", //
+    name: "DAMAC UAE,", //
     description:
-      "DAMAC Properties is a leading luxury real estate developer in the Middle East, with a track record of delivering some of the most iconic and innovative properties in the region. Founded in 2002, the company has quickly become a household name in the industry",
+      "Designed and developed from scratch by me, from concept to final implementation. DAMAC Properties is a leading luxury real estate developer in the Middle East, with a track record of delivering some of the most iconic and innovative properties in the region. Founded in 2002, the company has quickly become a household name in the industry",
     tags: [
       {
         name: "React.js",
@@ -330,7 +265,7 @@ const projects: TProject[] = [
   {
     name: "Magazine",
     description:
-      "engaging platform for readers to explore diverse content, stay informed on current events, trends, and topics of interest, while fostering a sense of community and offering a visually appealing and user-friendly experience.",
+      "Designed by me, developed from scratch by me, from concept to final implementation. An engaging platform for readers to explore diverse content, stay informed on current events, trends, and topics of interest, while fostering a sense of community and offering a visually appealing and user-friendly experience.",
     tags: [
       {
         name: "Turn.js",

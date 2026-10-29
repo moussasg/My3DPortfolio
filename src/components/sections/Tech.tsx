@@ -10,9 +10,9 @@ export const Tech = () => {
     <br></br>
       <div className={`flex flex-row flex-wrap justify-center gap-10`}>
         {technologies.map((technology) => (
-          <div className="h-28 w-28" key={technology.name}>
-            <p className="text-center">{technology.name}</p>
-            <img src={technology.icon} alt={technology.name} />
+          <div className="flex h-36 w-28 flex-col items-center" key={technology.name}>
+            <p className="mb-2 min-h-[2.5rem] text-center text-sm leading-tight">{technology.name}</p>
+            <img src={technology.icon} alt={technology.name} className="h-16 w-16 object-contain" />
           </div>
         ))}
       </div>
