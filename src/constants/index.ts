@@ -312,7 +312,7 @@ const projects: TProject[] = [
       },//
     ], //
     image: damac,
-    url: "https://damacproperties.vercel.app",
+    url: "https://real-estate-dm51ghx5p-moussasg.vercel.app/",
   },
   {
     name: "GogoVillage",
