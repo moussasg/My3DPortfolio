@@ -260,7 +260,7 @@ const projects: TProject[] = [
       },
     ],
     image: gogowalpaper,
-    url: "https://gogovilage.ae",
+    url: "https://gogovillage.ae",
   },
   {
     name: "Magazine",
