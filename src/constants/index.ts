@@ -81,16 +81,17 @@ const technologies: TTechnology[] = [
 //Software Engineer
 const experiences: TExperience[] = [
   {
-    title: "QA Engineer, Dubai",
+    title: "Manual QA Engineer, Dubai",
     companyName: "Blinx, UAE company",
     icon: Blinx,
     iconBg: "#383E56",  
-    date: "2025-2026", 
+    date: "Apr 2025 - Nov 2026", 
     points: [
-      "Reported approximately 10 bugs per day through manual testing, documenting defects and reproduction steps.",
-      "Used Playwright, Katalon Studio to automate tests for articles, programs, documentaries, and shows across a large content platform with 50,000+ pages.",
-      "Tested page functionality, UI elements, navigation, and content consistency to identify defects and regressions.",
-      "Executed automated tests to support website quality assurance across multiple content types, including articles, programs, documentaries, and shows.",
+      "Reported and tracked 5,000+ defects across web, mobile and TV applications, and verified fixes after resolution.",
+ "Designed and executed test cases for every release, covering functional, regression, smoke and exploratory testing. ",
+"Validated end-to-end user flows on web, mobile and TV platforms." ,
+"Automated navigation, responsive and page/image HTTP 200 checks with Playwright (TypeScript), reducing repetitive manual regression work. ",
+"Took part in a meeting with TikTok in Dubai to discuss technical support for the Blinx website: CDN, storage, video transcoding and a recommendation engine",
     ],
     link:"https://blinx.com",
   },
@@ -99,12 +100,10 @@ const experiences: TExperience[] = [
     companyName: "Blinx, UAE company",
     icon: Blinx,
     iconBg: "#383E56",  
-    date: "2024-2025", 
+    date: "May 2024 - Apr 2025", 
     points: [
-      "Generated over 20,000 missing metadata entries adhering to SEO best practices, resulting in nearly a 99% increase in indexed pages on Google.",
-      "Achieved a 98% reduction in total issues, addressing missing descriptions and keywords, server errors, broken links, incorrect URLs, sitemap/robots.txt errors, and slow-loading pages.",
-      "Resolved technical issues across major search engines (Google, Bing, Yandex, Baidu), including crawl errors, indexing, site speed optimization, and managing sitemap and robots.txt directives.",
-      "Conducted regular SEO audits and provided actionable recommendations for continuous improvement",
+      "Built an AI-powered script that generated missing meta descriptions and keywords from article titles and bodies, and pushed 20,000+ metadata entries to improve search visibility.",
+"Applied technical and on-page SEO to optimise the website."
     ],
     link:"https://blinx.com",
   },
@@ -113,7 +112,7 @@ const experiences: TExperience[] = [
     companyName: "Avidhilda",
     icon: Avidhilda,
     iconBg: "#383E56",
-    date: "2023 - 2024",
+    date: "Oct 2023 - Mars 2024",
     points: [
       "Collaborated with cross-functional teams to design innovative software solutions,resulting in a 85% increase in project efficiency and on-time delivery.",
       "Developed scalable and maintainable code, ensuring long-term stability of the software",
@@ -127,12 +126,9 @@ const experiences: TExperience[] = [
     companyName: "Halliburton - Leader Multinational Petroleum",
     icon: Halliburton,
     iconBg: "#E6DEDD",
-    date: "2022-2023",
+    date: "Feb 2023 - Aug 2023",
     points: [
-      "Validated well test data, including pressure, temperature, and flow rates, for accuracy and consistency.",
-      "Identified missing, inconsistent, or anomalous data in operational records and reports.",
-      "Cross-checked field measurements, calculations, and units to ensure data integrity.",
-      "Documented discrepancies and verified report completeness before submission."
+      "Performed operational data validation, accuracy checks and quality control on-site for a major usa multinational petroleum company."
     ],
     link:"https://www.halliburton.com/",
   },
