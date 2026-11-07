@@ -1,6 +1,6 @@
 
 import { ExternalLink, PlayCircle } from "lucide-react";
-
+import qaAutomationImage from "./assets/qa-automated.jpeg"; // Import the image
 export default function QAAutomationCard() {
   return (
     <a
@@ -16,7 +16,7 @@ export default function QAAutomationCard() {
       {/* Background image */}
       <div className="relative h-64 overflow-hidden">
         <img
-          src="/src/assets/qa-automated.jpeg"
+          src={qaAutomationImage} // Use the imported image
           alt="QA Automation project"
           className="h-full w-full object-cover transition-transform
           duration-700 group-hover:scale-110"
