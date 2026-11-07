@@ -4,7 +4,6 @@ import confetti from "canvas-confetti";
 import scrolup from "./assets/scrolup.png";
 import ReactGA from "react-ga" // this is for google analytics
 import { inject } from '@vercel/analytics'; 
-import { SpeedInsights } from "@vercel/speed-insights/react"
 import {
   About,
   Contact,
@@ -16,7 +15,6 @@ import {
 } from "./components";
 import { useEffect, useState } from "react";
 import { config } from "./constants/config";
-import Splash from "./components/layout/Splash";
 import { Tech } from "./components/sections/Tech";
 setTimeout(()=> {
   confetti()
@@ -28,7 +26,6 @@ setTimeout(()=> {
 const App = () => {
   const tracking_id = "G-X5S7FXJPC0"; 
   const [Arrow , setarrow] = useState(false)  
-  const [showSplash, setShowSplash] = useState(true);  
   useEffect(() => {
     ReactGA.initialize(tracking_id)
     ReactGA.pageview(window.location.pathname + window.location.search); // this is for google analytics
@@ -60,9 +57,7 @@ const App = () => {
   return ( //
     <BrowserRouter>
       <div className="bg-primary relative z-0">
-      {showSplash && <Splash onDone={() => setShowSplash(false)} />}
-      <SpeedInsights/>
-        <div id="firstpage"></div>
+      <div id="firstpage"></div>
       {Arrow ? 
       <div className="flex flex-col items-center gap-y-1 fixed bottom-14 z-40 ... w-4 h-4 sm:w-8 sm:h-8 right-1 sm:right-4 opacity-75 sm:opacity-100" onClick={() => Scrolupp("firstpage")}>
       <img src={scrolup}></img>

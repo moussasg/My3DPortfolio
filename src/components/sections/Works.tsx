@@ -8,6 +8,7 @@ import { fadeIn } from "../../utils/motion";
 import { config } from "../../constants/config";
 import { Header } from "../atoms/Header";
 import { TProject } from "../../types";
+import QAAutomationCard from "../../customizedlink";
 
 const ProjectCard: React.FC<{ index: number } & TProject> = ({
   index,
@@ -89,6 +90,11 @@ const Works = () => {
   return (
     <>
       <Header useMotion={true} {...config.sections.works} />
+      <h1>1 - Automated QA portfolio</h1>
+            <br />
+    <QAAutomationCard/>
+      <br />
+      2 - front end
       <div className="flex w-full">
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}

@@ -140,6 +140,7 @@ const experiences: TExperience[] = [
 
 
 const projects: TProject[] = [
+  // those are my front end projects that I have done for my clients and for my personal projects
   {
     name: "First Digital Storytelling Hub in MENA",
     description:
