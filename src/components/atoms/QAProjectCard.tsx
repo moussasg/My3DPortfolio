@@ -1,10 +1,10 @@
-
 import { ExternalLink, PlayCircle } from "lucide-react";
-import qaAutomationImage from "./assets/qa-automated.jpeg"; // Import the image
-export default function QAAutomationCard() {
+import { TQAProject } from "../../types";
+
+export default function QAProjectCard({ title, description, url, image, imageAlt, tags }: TQAProject) {
   return (
     <a
-      href="https://github.com/moussasg/qa-automation-portfolio"
+      href={url}
       target="_blank"
       rel="noopener noreferrer"
       className="group relative block max-w-md overflow-hidden
@@ -16,8 +16,8 @@ export default function QAAutomationCard() {
       {/* Background image */}
       <div className="relative h-64 overflow-hidden">
         <img
-          src={qaAutomationImage} // Use the imported image
-          alt="QA Automation project"
+          src={image}
+          alt={imageAlt}
           className="h-full w-full object-cover transition-transform
           duration-700 group-hover:scale-110"
         />
@@ -29,7 +29,7 @@ export default function QAAutomationCard() {
           border border-cyan-400/30 bg-slate-950/70 p-3
           text-cyan-400 backdrop-blur-md">
           <PlayCircle size={22} />
-        </div>\
+        </div>
 
         <span className="absolute bottom-4 left-5 rounded-full
           bg-cyan-400/10 px-3 py-1 text-xs font-semibold
@@ -43,27 +43,24 @@ export default function QAAutomationCard() {
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-xl font-bold text-white
             group-hover:text-cyan-300 transition-colors">
-            Playwright Test Suite
+            {title}
           </h3>
         </div>
 
         <p className="mb-5 text-sm leading-6 text-slate-400">
-          End-to-end testing with Playwright, TypeScript,
-          cross-browser validation and responsive testing.
+          {description}
         </p>
 
         <div className="mb-5 flex flex-wrap gap-2">
-          {["Playwright", "TypeScript", "React", "E2E Testing"].map(
-            (tech) => (
-              <span
-                key={tech}
-                className="rounded-md bg-slate-800 px-3 py-1
-                text-xs text-cyan-300"
-              >
-                {tech}
-              </span>
-            )
-          )}
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded-md bg-slate-800 px-3 py-1
+              text-xs text-cyan-300"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
 
         <div className="flex items-center gap-2 text-sm

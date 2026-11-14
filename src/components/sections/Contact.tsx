@@ -15,7 +15,7 @@ const INITIAL_STATE = Object.fromEntries(
 
 const emailjsConfig = {
   serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-  templateId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
   accessToken: import.meta.env.VITE_EMAILJS_ACCESS_TOKEN,
 };
 
@@ -33,22 +33,20 @@ const Contact = () => {
   };
 
   
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement> | undefined) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement> | undefined) => {
     if (e === undefined) return;
     e.preventDefault();
 
-    const isFormFilled = Object.values(form).every(value => value.trim() !== '')
-    console.log(isFormFilled);
-    
-  if (!isFormFilled) {
-    alert("Please fill in all the fields before submitting.");
-    return;
-  }
+    const isFormFilled = Object.values(form).every(value => value.trim() !== "");
+    if (!isFormFilled) {
+      alert("Please fill in all the fields before submitting.");
+      return;
+    }
 
     setLoading(true);
-
-    emailjs
-      .send(
+    try {
+      // Inside try: emailjs.send() throws synchronously when a key is missing.
+      await emailjs.send(
         emailjsConfig.serviceId,
         emailjsConfig.templateId,
         {
@@ -59,20 +57,15 @@ const Contact = () => {
           message: form.message,
         },
         emailjsConfig.accessToken
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
-
-          setForm(INITIAL_STATE);
-        },
-        (error) => {
-          setLoading(false);
-          console.log(error);
-          alert("Something went wrong.");
-        }
       );
+      alert("Thank you. I will get back to you as soon as possible.");
+      setForm(INITIAL_STATE);
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -114,9 +107,10 @@ const Contact = () => {
           })}
           <button
             type="submit"
-            className="bg-tertiary shadow-primary w-fit rounded-xl px-8 py-3 font-bold text-white shadow-md outline-none"
+            disabled={loading}
+            className="bg-tertiary shadow-primary w-fit rounded-xl px-8 py-3 font-bold text-white shadow-md outline-none disabled:cursor-wait disabled:opacity-60"
           >
-            {loading ? "sent successfully" : "Send"}
+            {loading ? "Sending..." : "Send"}
           </button>
         </form>
       </motion.div>
@@ -129,11 +123,22 @@ const Contact = () => {
       </motion.div>
 
     </div>
-    <br></br> {/* */}
+    <br></br>
     <div className="flex w-[100%] items-center justify-center mt-10 gap-x-4">
-    <a href="https://github.com/moussasg" target="blank"><img src={github} className="w-10 h-10"></img></a>
-    <a href="https://www.linkedin.com/in/moussa-souag-2892781b5" target="blank"><img src={linckedin} className="w-10 h-10"></img></a>
-     </div>
+      <a href={config.social.github} target="_blank" rel="noopener noreferrer">
+        <img src={github} alt="GitHub" className="w-10 h-10" />
+      </a>
+      <a href={config.social.linkedin} target="_blank" rel="noopener noreferrer">
+        <img src={linckedin} alt="LinkedIn" className="w-10 h-10" />
+      </a>
+      <a
+        href={config.html.cvUrl}
+        download
+        className="rounded-xl border-2 border-[#915eff] px-4 py-2 font-bold text-white transition-colors hover:bg-[#7c3aed]"
+      >
+        Download CV
+      </a>
+    </div>
     </>
   );
 };

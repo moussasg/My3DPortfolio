@@ -2,9 +2,13 @@ import type {
   TNavLink,
   TService,
   TTechnology,
+  TSkillGroup,
   TExperience,
   TProject,
+  TQAProject,
+  TEducation,
 } from "../types";
+import portfolioTestReport from "../assets/portfolio-test-report.png";
 
 import {
   mobile,
@@ -28,10 +32,14 @@ import {
   seo,
   Blinx,
   Blinxhome,
-  linear,
   swagger,
   katalon,
-  cloud
+  cloud,
+  docker,
+  jira,
+  mysql,
+  reactjs,
+  Nextjs,
 } from "../assets";
 
 export const navLinks: TNavLink[] = [
@@ -42,24 +50,31 @@ export const navLinks: TNavLink[] = [
   {
     id: "work",
     title: "Work",
-  }, 
+  },
+  {
+    id: "projects",
+    title: "Projects",
+  },
   {
     id: "contact",
     title: "Contact",
   },
 ];
 
+// Everything below mirrors the CV (public/Moussa_Souag_Junior_QA_Automation_CV.pdf).
+// Update both together so recruiters see the same story in both places.
+
 const services: TService[] = [
   {
-    title: "QA Automation",
+    title: "Test Automation",
     icon: mobile,
   },
   {
-    title: "Front End",
+    title: "Manual & Exploratory Testing",
     icon: cloud,
   },
   {
-    title: "Search Engine Optimization",               
+    title: "Front-End Development",
     icon: seo,
   },
 ];
@@ -73,67 +88,126 @@ const technologies: TTechnology[] = [
   { name: "Postman", icon: postman },
   { name: "Git", icon: git },
   { name: "GitHub Actions", icon: githubactions },
-  { name: "Linear", icon: linear},
+  { name: "Docker", icon: docker },
+  { name: "Jira", icon: jira },
+  { name: "SQL", icon: mysql },
+  { name: "React", icon: reactjs },
+  { name: "Next.js", icon: Nextjs },
   { name: "HTML 5", icon: html },
   { name: "CSS 3", icon: css },
-  { name: "Katalon", icon: katalon }
+  { name: "Katalon", icon: katalon },
 ];
-//Software Engineer
+
+/** The skill groups from the CV, shown as text under the logos (also helps keyword searches). */
+const skillGroups: TSkillGroup[] = [
+  {
+    title: "Test Automation",
+    skills: "Playwright (TypeScript/JS), Page Object Model, API testing with Playwright, cross-browser testing (Chromium, Firefox, WebKit, Edge), responsive & mobile emulation, role-based locators, flaky-test handling, Trace Viewer, HTML & Allure reports, Katalon Studio (basic)",
+  },
+  {
+    title: "CI/CD & DevOps",
+    skills: "GitHub Actions, automated pipeline triggers, regressions on pull requests, Docker (basic), Git, GitHub, Bitbucket, VS Code, Chrome DevTools",
+  },
+  {
+    title: "Manual Testing & QA",
+    skills: "Functional, regression, smoke & exploratory testing, cross-platform testing (web, mobile, TV), test case design & execution, defect lifecycle management, Jira, Confluence",
+  },
+  {
+    title: "API, Data & Web Stack",
+    skills: "Postman, REST APIs, SQL (basic), TypeScript, JavaScript (ES6+), Node.js, React, Next.js, HTML5, CSS3",
+  },
+];
+
 const experiences: TExperience[] = [
   {
-    title: "Manual QA Engineer, Dubai",
-    companyName: "Blinx, UAE company",
+    title: "QA Engineer (Manual + Automation)",
+    companyName: "Blinx — UAE",
     icon: Blinx,
-    iconBg: "#383E56",  
-    date: "Apr 2025 - Nov 2026", 
+    iconBg: "#383E56",
+    date: "Apr 2025 - Present",
     points: [
-      "Reported and tracked 5,000+ defects across web, mobile and TV applications, and verified fixes after resolution.",
- "Designed and executed test cases for every release, covering functional, regression, smoke and exploratory testing. ",
-"Validated end-to-end user flows on web, mobile and TV platforms." ,
-"Automated navigation, responsive and page/image HTTP 200 checks with Playwright (TypeScript), reducing repetitive manual regression work. ",
-"Took part in a meeting with TikTok in Dubai to discuss technical support for the Blinx website: CDN, storage, video transcoding and a recommendation engine",
+      "Reported, tracked and verified fixes for 5,000+ defects across web, mobile and TV applications of a media platform that crossed 5 billion views in its first year.",
+      "Designed and executed test cases for every release, covering functional, regression, smoke and exploratory testing.",
+      "Validated end-to-end user flows across web, mobile and TV platforms to safeguard continuous release stability.",
+      "Automated navigation, responsive UI and HTTP 200 checks using Playwright (TypeScript) with the Page Object Model, reducing repetitive manual regression work by 40%.",
+      "Joined a technical meeting with TikTok in Dubai about support for the Blinx website: CDN, storage, video transcoding and recommendation engine.",
     ],
-    link:"https://blinx.com",
+    link: "https://blinx.com",
   },
   {
-    title: "SEO Specialist, Dubai",
-    companyName: "Blinx, UAE company",
+    title: "SEO Specialist",
+    companyName: "Blinx — UAE",
     icon: Blinx,
-    iconBg: "#383E56",  
-    date: "May 2024 - Apr 2025", 
+    iconBg: "#383E56",
+    date: "May 2024 - Apr 2025",
     points: [
-      "Built an AI-powered script that generated missing meta descriptions and keywords from article titles and bodies, and pushed 20,000+ metadata entries to improve search visibility.",
-"Applied technical and on-page SEO to optimise the website."
+      "Built an AI-powered script that generated missing meta descriptions and keywords from article titles and bodies, pushing 20,000+ metadata entries live to improve search visibility.",
+      "Applied technical and on-page SEO to optimize website performance and search indexability.",
     ],
-    link:"https://blinx.com",
+    link: "https://blinx.com",
   },
   {
-    title: "Front End Developer, Dubai",
-    companyName: "Avidhilda",
+    title: "Frontend Developer",
+    companyName: "Avidhilda — Dubai, UAE",
     icon: Avidhilda,
     iconBg: "#383E56",
-    date: "Oct 2023 - Mars 2024",
+    date: "Oct 2023 - Mar 2024",
     points: [
-      "Collaborated with cross-functional teams to design innovative software solutions,resulting in a 85% increase in project efficiency and on-time delivery.",
-      "Developed scalable and maintainable code, ensuring long-term stability of the software",
-      "Optimized algorithms for faster processing, reducing overall computation time.",
-      "Maintained detailed documentation of development, enhancing team knowledge sharing."
+      "Built responsive, accessible web interfaces using JavaScript, TypeScript, React.js, Next.js, HTML and CSS with Git version control.",
+      "Collaborated with product designers to translate UI/UX wireframes into production web applications.",
     ],
-    link:"https://ucfashion.vercel.app",
+    link: "https://ucfashion.vercel.app",
   },
   {
-    title: "Data Quality Assurance — Well Test Operations, USA",
-    companyName: "Halliburton - Leader Multinational Petroleum",
+    title: "Data Quality Assurance",
+    companyName: "Well Test Operations (Oil & Gas) — Algeria",
     icon: Halliburton,
     iconBg: "#E6DEDD",
     date: "Feb 2023 - Aug 2023",
     points: [
-      "Performed operational data validation, accuracy checks and quality control on-site for a major usa multinational petroleum company."
+      "Performed operational data validation, accuracy checks and quality control on-site for a major US multinational petroleum company.",
     ],
-    link:"https://www.halliburton.com/",
+    link: "https://www.halliburton.com/",
   },
 ];
 
+const education: TEducation[] = [
+  {
+    title: "Master's Degree in Geology of Sedimentary Basins",
+    place: "USTHB, Algeria",
+    detail: "Graduated 2022 · Grade 16/20 (UAE attested)",
+  },
+  {
+    title: "Full-Stack JavaScript Development Bootcamp",
+    place: "GOMYCODE, Algeria",
+    detail: "6 months",
+  },
+];
+
+const certifications: TEducation[] = [
+  { title: "Build Your First End-to-End Test with Playwright", place: "Microsoft" },
+  { title: "Full-Stack Development with React & Next.js 14", place: "Udemy", detail: "40.5 hours" },
+  { title: "JavaScript and Data Structures", place: "freeCodeCamp", detail: "300 hours" },
+];
+
+const languages = [
+  { name: "Arabic", level: "Native" },
+  { name: "English", level: "Fluent" },
+  { name: "French", level: "Fluent" },
+];
+
+
+const qaProjects: TQAProject[] = [
+  {
+    title: "Portfolio Test Suite",
+    description:
+      "Automated tests for this website: E2E, cross-browser, mobile, API, accessibility, SEO and visual checks in GitHub Actions. Found and fixed 13 real bugs.",
+    url: "https://github.com/moussasg/My3DPortfolio",
+    image: portfolioTestReport,
+    imageAlt: "Playwright test report of this website",
+    tags: ["Playwright", "axe-core", "GitHub Actions", "Bug Reports"],
+  },
+];
 
 const projects: TProject[] = [
   // those are my front end projects that I have done for my clients and for my personal projects
@@ -230,7 +304,7 @@ const projects: TProject[] = [
     url: "https://oiltrading.vercel.app",
   },
   {
-    name: "DAMAC UAE,", //
+    name: "DAMAC UAE",
     description:
       "Designed and developed from scratch by me, from concept to final implementation. DAMAC Properties is a leading luxury real estate developer in the Middle East, with a track record of delivering some of the most iconic and innovative properties in the region. Founded in 2002, the company has quickly become a household name in the industry",
     tags: [
@@ -239,7 +313,7 @@ const projects: TProject[] = [
         color: "blue-text-gradient",
       },
       {
-        name: "Bootsrap",
+        name: "Bootstrap",
         color: "green-text-gradient",
       },//
     ], //
@@ -249,7 +323,7 @@ const projects: TProject[] = [
   {
     name: "GogoVillage",
     description:
-      "Gogo village, is a family owned & operated business with LOVE  to create fun ,creative & nature with cleanliness safety & affordability for crawlers to preteens alike. based in uae",
+      "Gogo Village is a family-owned and operated business based in the UAE, creating fun, creative, nature-inspired play spaces with cleanliness, safety and affordability for crawlers to preteens alike.",
     tags: [
       {
         name: "Wix",
@@ -278,4 +352,14 @@ const projects: TProject[] = [
   }
 ];
 
-export { services, technologies, experiences,  projects };
+export {
+  services,
+  technologies,
+  skillGroups,
+  experiences,
+  qaProjects,
+  projects,
+  education,
+  certifications,
+  languages,
+};

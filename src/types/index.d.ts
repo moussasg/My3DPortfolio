@@ -47,3 +47,23 @@ export type TMotion = {
   delay: number;
   duration: number;
 };
+
+export type TSkillGroup = {
+  title: string;
+  skills: string;
+};
+
+export type TEducation = {
+  title: string;
+  place: string;
+  detail?: string;
+};
+
+export type TQAProject = {
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+  imageAlt: string;
+  tags: string[];
+};

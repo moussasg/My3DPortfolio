@@ -14,10 +14,18 @@ type TConfig = {
     title: string;
     fullName: string;
     email: string;
+    /** Public path of the CV PDF (served from the /public folder). */
+    cvUrl: string;
   };
   hero: {
     name: string;
     p: string[];
+    location: string;
+    availability: string;
+  };
+  social: {
+    github: string;
+    linkedin: string;
   };
   contact: {
     form: {
@@ -39,19 +47,31 @@ type TConfig = {
     about: TSection;
     experience: TSection;
     skills: Required<Tskils>;
+    education: TSection;
     works:TSection;
   };
 };
 
 export const config: TConfig = {
   html: {
-    title: "Moussa | QA Automation Engineer – Playwright & TypeScript",
+    title: "Moussa Souag | Junior QA Automation Engineer",
     fullName: "Moussa Souag",
     email: "moussaswag5@mail.com",
+    cvUrl: "/Moussa_Souag_Junior_QA_Automation_CV.pdf",
   },
-  hero: { 
+  // Kept in line with the CV (Moussa_Souag_Junior_QA_Automation_CV.pdf).
+  hero: {
     name: "Moussa Souag",
-    p: ["QA Automation Engineer with 3 years of experience and a software engineering background. I design maintainable Playwright and TypeScript test frameworks, run them in CI/CD pipelines, and turn complex user flows into stable, automated tests that protect product quality."],
+    p: [
+      "Junior QA Automation Engineer · Playwright | TypeScript | JavaScript",
+      "1.5+ years testing a media platform with 5 billion views in its first year: 5,000+ verified defects across web, mobile and TV.",
+    ],
+    location: "Algiers, Algeria",
+    availability: "Open to remote & on-site roles (UAE, Europe, worldwide)",
+  },
+  social: {
+    github: "https://github.com/moussasg",
+    linkedin: "https://www.linkedin.com/in/moussasouag",
   },
   contact: {
     p: "Get in touch",
@@ -72,7 +92,7 @@ export const config: TConfig = {
     about: {
       p: "Introduction", //
       h2: "Overview.",
-      content: "Automated QA Engineer specializing in Playwright and TypeScript, with a developer’s background in React, Next.js and Node.js. I build Page Object Model test suites covering E2E, API, visual regression, and accessibility, run in CI/CD (GitHub Actions, Bitbucket), Linear for bug tracking. Experienced with a U.S. multinational petroleum company and Dubai media companies. Quick learner and collaborative. ! ",
+      content: "QA Engineer with 1.5+ years of hands-on testing experience on a high-traffic media platform (5 billion views in its first year) across web, mobile and TV, reporting 5,000+ verified defects. Strong JavaScript/TypeScript foundation from front-end development (React, Next.js) and a 6-month full-stack JavaScript bootcamp. I build Playwright (TypeScript) test suites with the Page Object Model, API tests, multi-browser execution and automated GitHub Actions CI/CD workflows, with a focus on stable locators, flaky-test resolution and clear test reporting. Seeking a Junior QA Automation Engineer role.",
     },
     experience: {
       p: "What I have done so far",
@@ -82,14 +102,18 @@ export const config: TConfig = {
     skills: {
       h2: "Technical Skills",
     },
+    education: {
+      p: "Learning path",
+      h2: "Education & Certifications.",
+    },
     works: {
       p: "My work",
       h2: "Projects.",  
-      content: `Following projects showcases my skills and experience through
-    real-world examples of my work. Each project is briefly described with
-     live demos in it. It reflects my
-    ability to solve complex problems, work with different technologies,
-    and manage projects effectively. Click on the picture to navigate to colaborated website.`,
+      content: `The following projects showcase my skills and experience through
+    real-world examples of my work. Each project is briefly described and
+    links to its live website. They reflect my ability to solve complex
+    problems, work with different technologies, and manage projects
+    effectively. Click on a picture to open the website.`,
     },
   },
 };

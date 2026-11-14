@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 
 import { ViewMyweb } from "../../assets";
 import { SectionWrapper } from "../../hoc";
-import { projects } from "../../constants";
+import { projects, qaProjects } from "../../constants";
 import { fadeIn } from "../../utils/motion";
 import { config } from "../../constants/config";
 import { Header } from "../atoms/Header";
 import { TProject } from "../../types";
-import QAAutomationCard from "../../customizedlink";
+import QAProjectCard from "../atoms/QAProjectCard";
 
 const ProjectCard: React.FC<{ index: number } & TProject> = ({
   index,
@@ -34,20 +34,21 @@ const ProjectCard: React.FC<{ index: number } & TProject> = ({
               alt={name}
               className="h-full w-full rounded-2xl object-cover"
             />
-            <a href={url} target="blank">
-            <div className="card-img_hover absolute inset-0 m-3 flex justify-end">
-              <div
-                onClick={() => window.open(url, "_blank")}
-                className="black-gradient flex h-10 w-10 cursor-pointer items-center justify-center rounded-full"
-              >
-                {/* */}
+            {/* The link covers the picture; the round icon is only a visual hint. */}
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit the ${name} website`}
+              className="card-img_hover absolute inset-0 m-3 flex justify-end"
+            >
+              <div className="black-gradient flex h-10 w-10 cursor-pointer items-center justify-center rounded-full">
                 <img
                   src={ViewMyweb}
-                  alt="ViewMyweb"
+                  alt=""
                   className="h-1/2 w-1/2 object-contain"
                 />
               </div>
-            </div>
             </a>
           </div>
           <div className="mt-5">
@@ -90,11 +91,15 @@ const Works = () => {
   return (
     <>
       <Header useMotion={true} {...config.sections.works} />
-      <h1>1 - Automated QA portfolio</h1>
-            <br />
-    <QAAutomationCard/>
-      <br />
-      2 - front end
+
+      <h3 className="mt-10 text-[24px] font-bold text-white">1. QA Automation</h3>
+      <div className="mt-5 flex flex-wrap gap-7">
+        {qaProjects.map((project) => (
+          <QAProjectCard key={project.title} {...project} />
+        ))}
+      </div>
+
+      <h3 className="mt-16 text-[24px] font-bold text-white">2. Front-End Development</h3>
       <div className="flex w-full">
         <motion.p
           variants={fadeIn("", "", 0.1, 1)}
@@ -113,4 +118,4 @@ const Works = () => {
   );
 };
 
-export default SectionWrapper(Works, "");
+export default SectionWrapper(Works, "projects");

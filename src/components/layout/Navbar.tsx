@@ -58,19 +58,22 @@ const Navbar = () => {
       }`}
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
+        {/* min-w-0 + truncate let the title shrink, so it can never push the menu button off screen */}
         <Link
           to="/"
-          className="flex items-center gap-2"
+          className="flex min-w-0 items-center gap-2"
           onClick={() => window.scrollTo(0, 0)}
         >
-          <img src={logo} alt="logo" className="h-9 w-9 object-contain" />
-          <p className="flex cursor-pointer text-[18px] font-bold text-white">
-            {config.html.title}
+          <img src={logo} alt="" className="h-9 w-9 shrink-0 object-contain" />
+          <p className="cursor-pointer truncate text-[18px] font-bold text-white">
+            {/* The full title only fits next to the links on wide screens */}
+            <span className="xl:hidden">{config.html.fullName}</span>
+            <span className="hidden xl:inline">{config.html.title}</span>
           </p>
         </Link>
 
         {/* Desktop navigation */}
-        <ul className="hidden list-none flex-row gap-10 sm:flex">
+        <ul className="hidden shrink-0 list-none flex-row gap-6 sm:flex lg:gap-10">
           {navLinks.map(nav => (
             <li
               key={nav.id}
@@ -85,15 +88,23 @@ const Navbar = () => {
         </ul>
 
         {/* Mobile navigation */}
-        <div className="flex flex-1 items-center justify-end sm:hidden">
-          <img
-            src={toggle ? close : menu}
-            alt="menu"
-            className="h-[28px] w-[28px] object-contain"
+        <div className="flex shrink-0 items-center justify-end sm:hidden">
+          <button
+            type="button"
+            aria-label={toggle ? 'Close menu' : 'Open menu'}
+            aria-expanded={toggle}
+            aria-controls="mobile-menu"
             onClick={() => setToggle(!toggle)}
-          />
+          >
+            <img
+              src={toggle ? close : menu}
+              alt=""
+              className="h-[28px] w-[28px] object-contain"
+            />
+          </button>
 
           <div
+            id="mobile-menu"
             className={`${
               toggle ? 'flex' : 'hidden'
             } bg-black opacity-75 absolute right-0 top-20 z-10 mx-4 my-2 min-w-[100px] rounded-xl p-6`}
