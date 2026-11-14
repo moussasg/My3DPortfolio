@@ -1,10 +1,10 @@
 import { test, expect } from '../fixtures/test';
-import { contactAlerts, validContactMessage } from '../data/portfolio';
+import { contactMessages, validContactMessage } from '../data/portfolio';
 import { isRemoteTarget } from '../data/test-env';
 import { mockEmailJs } from '../utils/network';
 
 /**
- * Phone-only behaviour. These tests run only in the phone-* projects
+ * Phone-only behaviour. These tests run only in the phone projects (ios-*, android-*)
  * (iPhone SE to iPhone 15 Pro Max, Pixel 7, Galaxy S24; see playwright.config.ts).
  * Layout checks shared with tablets and desktops live in tests/responsive/.
  */
@@ -53,8 +53,10 @@ test.describe('Mobile layout', { tag: '@mobile' }, () => {
     await portfolio.contactForm.form.scrollIntoViewIfNeeded();
     await portfolio.contactForm.fill(validContactMessage);
 
-    const alert = await portfolio.contactForm.submitAndCaptureAlert();
+    await portfolio.contactForm.submit();
 
-    expect(alert).toBe(contactAlerts.success);
+    // The confirmation appears under the button, where the visitor is looking.
+    await expect(portfolio.contactForm.successMessage).toHaveText(contactMessages.success);
+    await expect(portfolio.contactForm.successMessage).toBeInViewport();
   });
 });

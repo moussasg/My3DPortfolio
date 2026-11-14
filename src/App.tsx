@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom"; //
 import 'animate.css';
 import confetti from "canvas-confetti";
-import scrolup from "./assets/scrolup.png";
+import { ArrowUp } from "lucide-react";
 import ReactGA from "react-ga" // this is for google analytics
 import { inject } from '@vercel/analytics'; 
 import {
@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { config } from "./constants/config";
 import { Tech } from "./components/sections/Tech";
 import Education from "./components/sections/Education";
+import SectionDivider from "./components/atoms/SectionDivider";
 
 const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -52,10 +53,11 @@ const App = () => {
         <button
           type="button"
           onClick={scrollToTop}
-          className="fixed bottom-14 right-1 z-40 flex flex-col items-center gap-y-1 opacity-75 sm:right-4 sm:opacity-100"
+          aria-label="To Top"
+          title="Back to top"
+          className="group fixed bottom-5 right-4 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-[#7c3aed] text-white shadow-lg shadow-[#915eff]/40 ring-1 ring-white/20 transition hover:-translate-y-1 hover:bg-[#915eff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:bottom-8 sm:right-8 sm:h-12 sm:w-12"
         >
-          <img src={scrolup} alt="" className="h-4 w-4 sm:h-8 sm:w-8" />
-          <span className="text-center text-xs">To Top</span>
+          <ArrowUp aria-hidden="true" strokeWidth={2.5} className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 sm:h-6 sm:w-6" />
         </button>
       )}
         <div className="bg-hero-pattern bg-cover bg-center bg-no-repeat">
@@ -66,6 +68,7 @@ const App = () => {
         <Experience />
         <Tech/>
         <Works />
+        <SectionDivider />
         <Education />
         <div className="relative z-0">
           <Contact />

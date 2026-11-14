@@ -5,9 +5,9 @@
 **Moussa Souag, Junior QA Automation Engineer** (Playwright · TypeScript · JavaScript)
 🌐 [Live site](https://moussasg.vercel.app/) · 📄 [CV](https://moussasg.vercel.app/Moussa_Souag_Junior_QA_Automation_CV.pdf) · 💼 [LinkedIn](https://www.linkedin.com/in/moussasouag) · 🐞 [Bug reports](docs/BUG_REPORTS.md)
 
-This repository contains my portfolio website **and the automated test suite that protects it**: 241 Playwright tests in TypeScript, run by GitHub Actions on every push and pull request across Chromium, Firefox, WebKit, 5 phones and 2 tablets.
+This repository contains my portfolio website **and the automated test suite that protects it**: 304 Playwright tests in TypeScript, run by GitHub Actions on every push and pull request across Chromium, Microsoft Edge, Firefox, WebKit, 6 phones (small, medium and large iOS and Android screens) and 2 tablets.
 
-**The suite found 13 real bugs in this site, and all of them are fixed.** Each is written up as a bug report in [docs/BUG_REPORTS.md](docs/BUG_REPORTS.md) (steps to reproduce, expected vs actual, root cause, fix), and each has a regression test so it cannot come back. Highlights: the mobile menu was invisible on phones, one failed 3D download blanked the whole site, and the contact form sent the wrong EmailJS template ID.
+**Testing found 14 real bugs in this site, and all of them are fixed.** Each is written up as a bug report in [docs/BUG_REPORTS.md](docs/BUG_REPORTS.md) (steps to reproduce, expected vs actual, root cause, fix), and each has a regression test so it cannot come back. Highlights: the mobile menu was invisible on phones, one failed 3D download blanked the whole site, and the contact form sent the wrong EmailJS template ID.
 
 ## 🧪 Automated QA Test Suite
 
@@ -18,8 +18,8 @@ This repository contains my portfolio website **and the automated test suite tha
 | **Smoke** | Page loads, title, all sections render, no JavaScript errors | `tests/e2e/smoke.spec.ts` |
 | **Functional E2E** | Navbar links, active link highlight, scroll-to-top, page content against expected data | `tests/e2e/navigation.spec.ts`, `content.spec.ts` |
 | **Forms** | Contact form validation (empty, whitespace, invalid emails), success and server-error paths, the exact request sent to EmailJS | `tests/e2e/contact-form.spec.ts` |
-| **Cross-browser** | All functional and layout tests on Chromium, Firefox and WebKit (Safari engine) | `playwright.config.ts` |
-| **Responsive** | No horizontal scroll, nothing outside the screen, navigation reachable, CV button on the first screen, no overlapping elements. Runs on 5 phones (iPhone SE to iPhone 15 Pro Max, Pixel 7, Galaxy S24), 2 tablets (iPad Mini, Galaxy Tab S9), and a 320–1920 px viewport sweep | `tests/responsive/responsive.spec.ts` |
+| **Cross-browser** | All functional and layout tests on Chromium, Microsoft Edge, Firefox and WebKit (Safari engine) | `playwright.config.ts` |
+| **Responsive** | No horizontal scroll, nothing outside the screen or its section, navigation reachable, CV button on the first screen, no overlapping elements. Runs on 6 phones (iOS: iPhone SE, iPhone 14, iPhone 15 Pro Max; Android: Galaxy S24, Pixel 7, Pixel 9 Pro XL), 2 tablets (iPad Mini, Galaxy Tab S9), and a 320–1920 px viewport sweep | `tests/responsive/responsive.spec.ts` |
 | **Mobile** | Hamburger menu, title fits next to it, no heavy 3D model on phones, contact form on a phone | `tests/e2e/mobile.spec.ts` |
 | **Content vs CV** | Role, years of experience, location, skills, education and projects match the CV | `tests/e2e/content.spec.ts` |
 | **Network mocking** | EmailJS and analytics intercepted with `page.route()`, external sites stubbed | `tests/utils/network.ts` |
@@ -49,8 +49,8 @@ npx playwright install          # first time only: downloads the browsers
 npm test                        # everything: all browsers, phones, tablets + API
 npm run test:smoke              # quick smoke check
 npm run test:chromium           # one browser, includes a11y, SEO and visual tests
-npm run test:cross-browser      # Chromium, Firefox, WebKit
-npm run test:mobile             # 5 phones and 2 tablets
+npm run test:cross-browser      # Chromium, Edge, Firefox, WebKit
+npm run test:mobile             # 6 phones and 2 tablets
 npm run test:responsive         # layout checks on every browser and device
 npm run test:a11y               # accessibility only
 npm run test:api                # HTTP checks only

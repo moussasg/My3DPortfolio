@@ -8,14 +8,20 @@ export class ContactForm {
   readonly emailInput: Locator;
   readonly messageInput: Locator;
   readonly submitButton: Locator;
+  /** Confirmation shown after a successful send (a polite live region). */
+  readonly successMessage: Locator;
+  /** Validation and sending errors (an assertive live region). */
+  readonly errorMessage: Locator;
 
-  constructor(private readonly page: Page) {
+  constructor(page: Page) {
     this.form = page.locator('#contact form');
     this.nameInput = this.form.getByLabel('Your Name');
     this.emailInput = this.form.getByLabel('Your Email');
     this.messageInput = this.form.getByLabel('Your Message');
     // The button label changes while sending, so locate it by role only.
     this.submitButton = this.form.getByRole('button');
+    this.successMessage = this.form.getByRole('status');
+    this.errorMessage = this.form.getByRole('alert');
   }
 
   async fill({ name, email, message }: Partial<ContactDetails>): Promise<void> {
@@ -26,21 +32,6 @@ export class ContactForm {
 
   async submit(): Promise<void> {
     await this.submitButton.click();
-  }
-
-  /**
-   * Submits the form and returns the text of the next window.alert().
-   * The alert is accepted automatically so the page is never left blocked.
-   */
-  async submitAndCaptureAlert(): Promise<string> {
-    const alertText = new Promise<string>(resolve => {
-      this.page.once('dialog', async dialog => {
-        resolve(dialog.message());
-        await dialog.accept();
-      });
-    });
-    await this.submit();
-    return alertText;
   }
 
   /** Whether the browser's built-in validation accepts the e-mail field. */

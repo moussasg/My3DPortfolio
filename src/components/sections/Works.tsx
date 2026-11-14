@@ -19,7 +19,8 @@ const ProjectCard: React.FC<{ index: number } & TProject> = ({
   url,
 }) => {
   return (
-    <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
+    // A short stagger: with 0.5 s per card the last card only arrived ~4 s after the section appeared.
+    <motion.div variants={fadeIn("up", "spring", index * 0.15, 0.75)}>
       <Tilt
         glareEnable
         tiltEnable

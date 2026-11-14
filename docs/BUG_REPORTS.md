@@ -23,6 +23,7 @@ Each one is labelled `// Regression test for BUG-xx` in the code.
 | [BUG-11](#bug-11) | `<title>` in index.html differs from the runtime title | Low | SEO | ✅ Fixed | `seo/seo.spec.ts` |
 | [BUG-12](#bug-12) | Experience date written "Mars 2024" | Low | Content | ✅ Fixed | `e2e/content.spec.ts` |
 | [BUG-13](#bug-13) | Projects section cannot be linked to | Low | Navigation | ✅ Fixed | `e2e/navigation.spec.ts` |
+| [BUG-14](#bug-14) | Project cards stuck 100 px too low on phones | Medium | Responsive / UI | ✅ Fixed | `responsive/responsive.spec.ts` |
 
 ---
 
@@ -135,3 +136,17 @@ Each one is labelled `// Regression test for BUG-xx` in the code.
 - **Severity:** Low
 - **Actual:** The Projects section was created with `SectionWrapper(Works, "")`, so it had an empty `id` and no navbar entry, although it is one of the sections recruiters most want to reach.
 - **Fix:** The section id is `projects` and the navbar has a **Projects** link. The Skills section also got an id (`skills`).
+
+### BUG-14
+**Project cards stuck 100 px too low on phones**
+
+- **Severity:** Medium: on phones the Projects section looked broken.
+- **Environment:** Phones (360–430 px wide), every browser.
+- **Found by:** a review of full-page screenshots at phone, tablet and desktop sizes. A new layout check was then confirmed to fail on the old code (iPhone SE: the last card ended 40 px below its section) before the fix.
+- **Steps to reproduce:**
+  1. Open the site on a phone and scroll to **Projects**.
+  2. Look at the space above the first card and below the last one.
+- **Expected:** Cards sit right under the section text, and the last card ends inside the Projects section.
+- **Actual:** A large empty gap above the first card, and the last card ("Magazine") hangs out of the section, into the space before Education.
+- **Root cause:** `SectionWrapper.tsx` started each section's entrance animation only when 25% of the section was on screen at once. On a phone the Projects section is about 5,000 px tall, so 25% never fits on the screen: the animation never ran and the cards stayed at their start position, 100 px lower (section headings 50 px higher).
+- **Fix:** The animation now starts as soon as the top of a section is 10% into the screen, whatever the section's height. The responsive test now also checks that no text, image or link sticks out of its own section, on every browser and device.

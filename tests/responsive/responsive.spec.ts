@@ -24,6 +24,34 @@ async function elementsOutsideViewport(page: Page): Promise<string[]> {
   });
 }
 
+/**
+ * Content that spills out of its own section, for example a project card left
+ * below the Projects section because its entrance animation never ran.
+ */
+async function elementsOutsideTheirSection(page: Page): Promise<string[]> {
+  return page.evaluate(() => {
+    const problems: string[] = [];
+    for (const section of document.querySelectorAll<HTMLElement>('section[id]')) {
+      const area = section.getBoundingClientRect();
+      for (const el of section.querySelectorAll<HTMLElement>('h2, h3, p, li, img, a, button')) {
+        if (el.closest('canvas, [aria-hidden="true"]')) continue;
+        const box = el.getBoundingClientRect();
+        if (box.width === 0 || box.height === 0) continue;
+        if (box.top < area.top - 1 || box.bottom > area.bottom + 1) {
+          const text = (el.textContent ?? el.getAttribute('alt') ?? '').trim().slice(0, 30);
+          problems.push(`#${section.id} <${el.tagName.toLowerCase()}> "${text}"`);
+        }
+      }
+    }
+    return problems;
+  });
+}
+
+/** Everything that breaks the layout: content outside the screen or outside its section. */
+async function layoutProblems(page: Page): Promise<string[]> {
+  return [...(await elementsOutsideViewport(page)), ...(await elementsOutsideTheirSection(page))];
+}
+
 async function expectNavigationReachable(portfolio: PortfolioPage) {
   const { navbar } = portfolio;
   if (await navbar.menuToggle.isVisible()) {
@@ -50,11 +78,12 @@ test.describe('Responsive layout', { tag: '@responsive' }, () => {
     expect(pageWidth).toBeLessThanOrEqual(viewportWidth);
   });
 
-  test('no text, image or button sticks out of the screen', async ({ portfolio, page }) => {
+  // Also the regression test for BUG-14 (project cards stuck below their section on phones).
+  test('no text, image or button sticks out of the screen or its section', async ({ portfolio, page }) => {
     await portfolio.scrollThroughPage();
 
-    // Polled: some sections slide in from the side when they scroll into view.
-    await expect.poll(() => elementsOutsideViewport(page)).toEqual([]);
+    // Polled: sections slide and fade in when they scroll into view.
+    await expect.poll(() => layoutProblems(page)).toEqual([]);
   });
 
   test('every section can be reached from the navigation', async ({ portfolio }) => {
@@ -100,7 +129,7 @@ test.describe('Viewport sweep', { tag: ['@responsive', '@sweep'] }, () => {
         await expectNavigationReachable(portfolio);
 
         await portfolio.scrollThroughPage();
-        await expect.poll(() => elementsOutsideViewport(page)).toEqual([]);
+        await expect.poll(() => layoutProblems(page)).toEqual([]);
         expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
       });
     });

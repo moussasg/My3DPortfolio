@@ -29,8 +29,15 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
+      # GitHub's Ubuntu runners usually ship with Edge; install it only if it is missing.
+      - name: Make sure Microsoft Edge is installed
+        run: |
+          if [ ! -x /opt/microsoft/msedge/msedge ]; then
+            npx playwright install --with-deps msedge
+          fi
+
       # Builds the app, starts it on localhost and runs every project:
-      # api, chromium, firefox, webkit, 5 phones and 2 tablets.
+      # api, chromium, edge, firefox, webkit, 6 phones and 2 tablets.
       - name: Run Playwright tests
         run: npx playwright test
 

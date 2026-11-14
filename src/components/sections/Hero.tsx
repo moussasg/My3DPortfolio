@@ -1,16 +1,28 @@
-import { motion } from "framer-motion";
-import { MapPin } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Hand, MapPin, Rotate3d } from "lucide-react";
 import { useEffect, useState } from "react";
-import IndicatorRotation from "../../assets/rotation.png";
 import { config } from "../../constants/config";
 import { styles } from "../../constants/styles";
 import { ComputersCanvas } from "../canvas";
 
+/** True when the browser can draw the 3D model (the hint would be misleading otherwise). */
+const supportsWebGL = () => {
+  try {
+    const gl = document.createElement("canvas").getContext("webgl");
+    gl?.getExtension("WEBGL_lose_context")?.loseContext(); // free the test context right away
+    return gl !== null;
+  } catch {
+    return false;
+  }
+};
+
 const Hero = () => {
   const [showRotationHint, setShowRotationHint] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => setShowRotationHint(true), 1000);
+    if (!supportsWebGL()) return;
+    const timeoutId = setTimeout(() => setShowRotationHint(true), 1500);
     return () => clearTimeout(timeoutId);
   }, []);
 
@@ -18,7 +30,8 @@ const Hero = () => {
     // min-h-screen with the text in normal flow: on short screens the hero grows instead of overlapping.
     <section className="relative mx-auto min-h-screen w-full">
       {/* The 3D scene fills the hero behind the text. */}
-      <div className="absolute inset-0">
+      {/* The hint has done its job once the visitor grabs the model. */}
+      <div className="absolute inset-0" onPointerDown={() => setShowRotationHint(false)}>
         <ComputersCanvas />
       </div>
 
@@ -62,13 +75,31 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* "Drag to rotate" hint next to the 3D model (larger screens only). */}
+      {/* "Drag to rotate" hint next to the 3D model (screens where the model is shown). */}
       {showRotationHint && (
-        <img
-          src={IndicatorRotation}
-          alt=""
-          className="pointer-events-none absolute bottom-48 right-[8%] z-10 hidden h-[50px] w-[50px] opacity-75 sm:block"
-        />
+        <motion.div
+          aria-hidden="true" // a mouse/touch hint; the 3D model is not keyboard-operable
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="pointer-events-none absolute bottom-48 right-[6%] z-10 hidden items-center gap-3 rounded-full border border-[#915eff]/60 bg-primary/75 py-2 pl-3 pr-4 text-white shadow-lg shadow-[#915eff]/25 backdrop-blur-sm sm:flex"
+        >
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#7c3aed]">
+            <Rotate3d aria-hidden="true" className="h-5 w-5" />
+          </span>
+          <span className="flex flex-col leading-tight">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#c4b5fd]">Interactive 3D</span>
+            <span className="text-[14px] font-medium">Drag to rotate</span>
+          </span>
+          <motion.span
+            aria-hidden="true"
+            animate={reduceMotion ? undefined : { x: [-6, 6, -6] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="text-[#c4b5fd]"
+          >
+            <Hand className="h-5 w-5" />
+          </motion.span>
+        </motion.div>
       )}
 
       <div className="xs:bottom-10 absolute bottom-32 z-10 flex w-full items-center justify-center">

@@ -67,7 +67,7 @@ export const config: TConfig = {
       "1.5+ years testing a media platform with 5 billion views in its first year: 5,000+ verified defects across web, mobile and TV.",
     ],
     location: "Algiers, Algeria",
-    availability: "Open to remote & on-site roles (UAE, Europe, worldwide)",
+    availability: "Open to worldwide remote & on-site roles (UAE, GCC)",
   },
   social: {
     github: "https://github.com/moussasg",

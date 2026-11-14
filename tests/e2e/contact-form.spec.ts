@@ -1,21 +1,33 @@
 import { test, expect } from '../fixtures/test';
-import { contactAlerts, validContactMessage } from '../data/portfolio';
+import { contactMessages, validContactMessage } from '../data/portfolio';
 import { isRemoteTarget, TEST_EMAILJS } from '../data/test-env';
 import { mockEmailJs, mockPendingEmailJs } from '../utils/network';
 
 test.describe('Contact form', () => {
-  test.beforeEach(async ({ portfolio }) => {
+  // Feedback must appear on the page, never as a blocking browser pop-up (window.alert).
+  let popups: string[];
+
+  test.beforeEach(async ({ portfolio, page }) => {
+    popups = [];
+    page.on('dialog', dialog => {
+      popups.push(dialog.message());
+      void dialog.dismiss();
+    });
     await portfolio.goto();
     await portfolio.contactForm.form.scrollIntoViewIfNeeded();
+  });
+
+  test.afterEach(() => {
+    expect(popups, 'browser pop-ups opened by the form').toEqual([]);
   });
 
   test.describe('validation', () => {
     test('empty form is rejected with a message and nothing is sent', async ({ portfolio, page }) => {
       const sent = await mockEmailJs(page);
 
-      const alert = await portfolio.contactForm.submitAndCaptureAlert();
+      await portfolio.contactForm.submit();
 
-      expect(alert).toBe(contactAlerts.missingFields);
+      await expect(portfolio.contactForm.errorMessage).toHaveText(contactMessages.missingFields);
       expect(sent).toHaveLength(0);
     });
 
@@ -23,9 +35,9 @@ test.describe('Contact form', () => {
       const sent = await mockEmailJs(page);
       await portfolio.contactForm.fill({ ...validContactMessage, message: '' });
 
-      const alert = await portfolio.contactForm.submitAndCaptureAlert();
+      await portfolio.contactForm.submit();
 
-      expect(alert).toBe(contactAlerts.missingFields);
+      await expect(portfolio.contactForm.errorMessage).toHaveText(contactMessages.missingFields);
       expect(sent).toHaveLength(0);
     });
 
@@ -33,10 +45,19 @@ test.describe('Contact form', () => {
       const sent = await mockEmailJs(page);
       await portfolio.contactForm.fill({ name: '   ', email: validContactMessage.email, message: '   ' });
 
-      const alert = await portfolio.contactForm.submitAndCaptureAlert();
+      await portfolio.contactForm.submit();
 
-      expect(alert).toBe(contactAlerts.missingFields);
+      await expect(portfolio.contactForm.errorMessage).toHaveText(contactMessages.missingFields);
       expect(sent).toHaveLength(0);
+    });
+
+    test('error message disappears as soon as the visitor edits the form', async ({ portfolio }) => {
+      await portfolio.contactForm.submit();
+      await expect(portfolio.contactForm.errorMessage).toHaveText(contactMessages.missingFields);
+
+      await portfolio.contactForm.fill({ name: 'Jane' });
+
+      await expect(portfolio.contactForm.errorMessage).toBeEmpty();
     });
 
     for (const email of ['not-an-email', 'jane@', '@example.com']) {
@@ -59,9 +80,10 @@ test.describe('Contact form', () => {
       const sent = await mockEmailJs(page);
       await portfolio.contactForm.fill(validContactMessage);
 
-      const alert = await portfolio.contactForm.submitAndCaptureAlert();
+      await portfolio.contactForm.submit();
 
-      expect(alert).toBe(contactAlerts.success);
+      await expect(portfolio.contactForm.successMessage).toHaveText(contactMessages.success);
+      await expect(portfolio.contactForm.errorMessage).toBeEmpty();
       expect(sent).toHaveLength(1);
       expect(sent[0].template_params).toMatchObject({
         form_name: validContactMessage.name,
@@ -79,7 +101,8 @@ test.describe('Contact form', () => {
       const sent = await mockEmailJs(page);
       await portfolio.contactForm.fill(validContactMessage);
 
-      await portfolio.contactForm.submitAndCaptureAlert();
+      await portfolio.contactForm.submit();
+      await expect(portfolio.contactForm.successMessage).toHaveText(contactMessages.success);
 
       expect(sent[0]).toMatchObject({
         service_id: TEST_EMAILJS.serviceId,
@@ -92,9 +115,10 @@ test.describe('Contact form', () => {
       await mockEmailJs(page, { status: 400 });
       await portfolio.contactForm.fill(validContactMessage);
 
-      const alert = await portfolio.contactForm.submitAndCaptureAlert();
+      await portfolio.contactForm.submit();
 
-      expect(alert).toBe(contactAlerts.failure);
+      await expect(portfolio.contactForm.errorMessage).toHaveText(contactMessages.failure);
+      await expect(portfolio.contactForm.successMessage).toBeEmpty();
       await expect(portfolio.contactForm.messageInput).toHaveValue(validContactMessage.message);
       await expect(portfolio.contactForm.submitButton).toHaveText('Send');
     });
@@ -103,22 +127,17 @@ test.describe('Contact form', () => {
     test('button shows a neutral, disabled "Sending..." state during the request', async ({ portfolio, page }) => {
       const emailJs = await mockPendingEmailJs(page);
       await portfolio.contactForm.fill(validContactMessage);
-      const alert = new Promise<string>(resolve =>
-        page.once('dialog', async dialog => {
-          resolve(dialog.message());
-          await dialog.accept();
-        }),
-      );
 
       await portfolio.contactForm.submit();
 
       // The request is still pending here, however slow the machine is.
       await expect(portfolio.contactForm.submitButton).toHaveText('Sending...');
       await expect(portfolio.contactForm.submitButton).toBeDisabled(); // prevents double submissions
+      await expect(portfolio.contactForm.successMessage).toBeEmpty();
 
       emailJs.respond();
 
-      expect(await alert).toBe(contactAlerts.success);
+      await expect(portfolio.contactForm.successMessage).toHaveText(contactMessages.success);
       await expect(portfolio.contactForm.submitButton).toHaveText('Send');
       await expect(portfolio.contactForm.submitButton).toBeEnabled();
     });

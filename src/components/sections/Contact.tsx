@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { CircleAlert, CircleCheck } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { SectionWrapper } from "../../hoc";
 import { slideIn } from "../../utils/motion";
@@ -19,10 +20,42 @@ const emailjsConfig = {
   accessToken: import.meta.env.VITE_EMAILJS_ACCESS_TOKEN,
 };
 
+/** Feedback shown under the "Send" button (instead of a browser pop-up). */
+const CONTACT_MESSAGES = {
+  missingFields: "Please fill in all the fields before submitting.",
+  success: "Thank you! Your message has been sent. I will get back to you as soon as possible.",
+  failure: "Sorry, your message could not be sent. Please try again later or contact me on LinkedIn.",
+};
+
+type TFormStatus = { type: "success" | "error"; text: string } | null;
+
+const FormMessage = ({ type, text }: { type: "success" | "error"; text: string }) => {
+  const Icon = type === "success" ? CircleCheck : CircleAlert;
+  const colors =
+    type === "success"
+      ? "border-green-500/40 bg-green-500/10 text-green-300"
+      : "border-red-500/40 bg-red-500/10 text-red-300";
+  return (
+    <p className={`mt-4 flex items-start gap-2 rounded-lg border px-4 py-3 text-sm font-medium ${colors}`}>
+      <Icon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />
+      <span>{text}</span>
+    </p>
+  );
+};
+
 const Contact = () => {
   const formRef = useRef<React.LegacyRef<HTMLFormElement> | undefined>();
   const [form, setForm] = useState(INITIAL_STATE);
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<TFormStatus>(null);
+  const messagesRef = useRef<HTMLDivElement>(null);
+
+  // On phones the message can appear below the bottom of the screen: bring it into view.
+  useEffect(() => {
+    if (!status) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    messagesRef.current?.scrollIntoView({ block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
+  }, [status]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | undefined
@@ -30,6 +63,7 @@ const Contact = () => {
     if (e === undefined) return;
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+    setStatus(null); // the old message no longer applies once the visitor edits the form
   };
 
   
@@ -39,10 +73,11 @@ const Contact = () => {
 
     const isFormFilled = Object.values(form).every(value => value.trim() !== "");
     if (!isFormFilled) {
-      alert("Please fill in all the fields before submitting.");
+      setStatus({ type: "error", text: CONTACT_MESSAGES.missingFields });
       return;
     }
 
+    setStatus(null);
     setLoading(true);
     try {
       // Inside try: emailjs.send() throws synchronously when a key is missing.
@@ -58,11 +93,11 @@ const Contact = () => {
         },
         emailjsConfig.accessToken
       );
-      alert("Thank you. I will get back to you as soon as possible.");
+      setStatus({ type: "success", text: CONTACT_MESSAGES.success });
       setForm(INITIAL_STATE);
     } catch (error) {
       console.error(error);
-      alert("Something went wrong.");
+      setStatus({ type: "error", text: CONTACT_MESSAGES.failure });
     } finally {
       setLoading(false);
     }
@@ -105,13 +140,24 @@ const Contact = () => {
               </label>
             );
           })}
-          <button
-            type="submit"
-            disabled={loading}
-            className="bg-tertiary shadow-primary w-fit rounded-xl px-8 py-3 font-bold text-white shadow-md outline-none disabled:cursor-wait disabled:opacity-60"
-          >
-            {loading ? "Sending..." : "Send"}
-          </button>
+          <div className="flex flex-col items-start">
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-tertiary shadow-primary w-fit rounded-xl px-8 py-3 font-bold text-white shadow-md outline-none disabled:cursor-wait disabled:opacity-60"
+            >
+              {loading ? "Sending..." : "Send"}
+            </button>
+            {/* Live regions stay in the page so screen readers announce new messages. */}
+            <div ref={messagesRef} className="w-full scroll-mb-6">
+              <div role="status">
+                {status?.type === "success" && <FormMessage {...status} />}
+              </div>
+              <div role="alert">
+                {status?.type === "error" && <FormMessage {...status} />}
+              </div>
+            </div>
+          </div>
         </form>
       </motion.div>
 

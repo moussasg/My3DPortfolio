@@ -106,11 +106,11 @@ export const socialLinks = [
   { name: 'LinkedIn', href: 'https://www.linkedin.com/in/moussasouag' },
 ] as const;
 
-/** Messages shown by the contact form through window.alert(). */
-export const contactAlerts = {
+/** Messages the contact form shows on the page, under the "Send" button. */
+export const contactMessages = {
   missingFields: 'Please fill in all the fields before submitting.',
-  success: 'Thank you. I will get back to you as soon as possible.',
-  failure: 'Something went wrong.',
+  success: 'Thank you! Your message has been sent. I will get back to you as soon as possible.',
+  failure: 'Sorry, your message could not be sent. Please try again later or contact me on LinkedIn.',
 } as const;
 
 export const validContactMessage = {

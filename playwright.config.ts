@@ -13,29 +13,42 @@ const HOST = '127.0.0.1';
 const BASE_URL = process.env.BASE_URL ?? `http://${HOST}:${PORT}`;
 const isCI = Boolean(process.env.CI);
 
-// Which tests each kind of project runs:
+const desktop = [ // the desktop browsers (each one is a "project")
+  { name: 'chromium', use: { ...devices['Desktop Chrome'] } }, // Chrome
+  { name: 'edge', use: { ...devices['Desktop Edge'], channel: 'msedge' } }, // Microsoft Edge (installed on Windows and on GitHub's Ubuntu runners)
+  { name: 'firefox', use: { ...devices['Desktop Firefox'] } }, // Firefox
+  { name: 'webkit', use: { ...devices['Desktop Safari'] } }, // Safari's engine
+];
+
+const mobile = [ // the phones (screen size, touch screen, user agent): iOS runs on WebKit, Android on Chromium
+  { name: 'ios-small', use: { ...devices['iPhone SE'] } }, // 320×568
+  { name: 'ios-medium', use: { ...devices['iPhone 14'] } }, // 390×664
+  { name: 'ios-large', use: { ...devices['iPhone 15 Pro Max'] } }, // 430×739
+  { name: 'android-small', use: { ...devices['Galaxy S24'] } }, // 360×780
+  { name: 'android-medium', use: { ...devices['Pixel 7'] } }, // 412×839
+  { name: 'android-large', use: { ...devices['Pixel 9 Pro XL'] } }, // 448×921
+];
+
+const tablets = [ // tablets get the desktop navbar
+  { name: 'tablet-ios', use: { ...devices['iPad Mini'] } }, // 768×1024
+  { name: 'tablet-android', use: { ...devices['Galaxy Tab S9'] } }, // 640×1024
+];
+
+// Which tests each kind of project runs, by tag:
 //  - @mobile: phone-only behaviour (hamburger menu, no 3D model…), phones only
 //  - @responsive: layout checks for every screen, all browsers and devices
 //  - @sweep: the 320px–1920px viewport sweep, Chromium only (it sets its own viewport)
 const BROWSER_TESTS = ['**/e2e/**/*.spec.ts', '**/responsive/**/*.spec.ts'];
-const RESPONSIVE_TESTS = '**/responsive/**/*.spec.ts';
-
-/** A phone: phone-only tests plus the shared layout checks. */
-const phone = (name: string, device: string) => ({
-  name: `phone-${name}`,
-  use: { ...devices[device] },
-  testMatch: BROWSER_TESTS,
-  grep: /@mobile|@responsive/,
-  grepInvert: /@sweep/,
-});
-
-/** A tablet: tablets get the desktop navbar, so only the shared layout checks apply. */
-const tablet = (name: string, device: string) => ({
-  name: `tablet-${name}`,
-  use: { ...devices[device] },
-  testMatch: RESPONSIVE_TESTS,
-  grepInvert: /@sweep/,
-});
+const runs = {
+  // Chromium runs everything except the phone-only tests: e2e, responsive (incl. the sweep), a11y, SEO, visual.
+  everything: { testIgnore: '**/api/**', grepInvert: /@mobile/ },
+  // The other desktop browsers: functional and layout tests.
+  desktop: { testMatch: BROWSER_TESTS, grepInvert: /@mobile|@sweep/ },
+  // Phones: phone-only tests plus the shared layout checks.
+  phone: { testMatch: BROWSER_TESTS, grep: /@mobile|@responsive/, grepInvert: /@sweep/ },
+  // Tablets: the shared layout checks.
+  tablet: { testMatch: '**/responsive/**/*.spec.ts', grepInvert: /@sweep/ },
+};
 
 export default defineConfig({
   testDir: './tests',
@@ -72,41 +85,10 @@ export default defineConfig({
   },
 
   projects: [
-    // HTTP-level checks: no browser needed.
-    { name: 'api', testMatch: '**/api/**/*.spec.ts' },
-
-    // Chromium runs everything: e2e, responsive (incl. the viewport sweep), a11y, SEO and visual tests.
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-      testIgnore: '**/api/**',
-      grepInvert: /@mobile/,
-    },
-
-    // Cross-browser: functional and layout tests on Firefox and WebKit (Safari's engine).
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-      testMatch: BROWSER_TESTS,
-      grepInvert: /@mobile|@sweep/,
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-      testMatch: BROWSER_TESTS,
-      grepInvert: /@mobile|@sweep/,
-    },
-
-    // Phones, from the smallest to the largest common screens (iOS = WebKit, Android = Chromium).
-    phone('iphone-se', 'iPhone SE'), // 320×568
-    phone('iphone-14', 'iPhone 14'), // 390×664
-    phone('iphone-15-pro-max', 'iPhone 15 Pro Max'), // 430×739
-    phone('pixel-7', 'Pixel 7'), // 412×839
-    phone('galaxy-s24', 'Galaxy S24'), // 360×780
-
-    // Tablets.
-    tablet('ipad-mini', 'iPad Mini'), // 768×1024
-    tablet('galaxy-tab-s9', 'Galaxy Tab S9'), // 640×1024
+    { name: 'api', testMatch: '**/api/**/*.spec.ts' }, // HTTP-level checks: no browser needed
+    ...desktop.map(browser => ({ ...browser, ...(browser.name === 'chromium' ? runs.everything : runs.desktop) })),
+    ...mobile.map(phone => ({ ...phone, ...runs.phone })),
+    ...tablets.map(tablet => ({ ...tablet, ...runs.tablet })),
   ],
 
   // Build into a separate folder so the real `dist/` is never overwritten,
