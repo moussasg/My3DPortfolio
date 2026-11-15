@@ -44,17 +44,11 @@ export default defineConfig({
     ...mobile.map(phone => ({ ...phone, testMatch: '**/e2e/*.spec.ts' })),
   ],
 
-  // Builds the site and starts it before the tests. The fake EmailJS keys let the
-  // contact form run; the tests intercept the request, so no email is ever sent.
+  // Builds the site and starts it before the tests.
   webServer: {
     command: 'npx vite build --outDir dist-e2e --emptyOutDir && npx vite preview --outDir dist-e2e --host 127.0.0.1 --port 5050',
     url: BASE_URL,
     reuseExistingServer: !isCI,
     timeout: 300_000,
-    env: {
-      VITE_EMAILJS_SERVICE_ID: 'service_test',
-      VITE_EMAILJS_TEMPLATE_ID: 'template_test',
-      VITE_EMAILJS_ACCESS_TOKEN: 'public_key_test',
-    },
   },
 });

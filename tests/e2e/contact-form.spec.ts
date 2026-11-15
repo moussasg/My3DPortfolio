@@ -1,8 +1,8 @@
 import { test, expect } from '../fixtures';
 
-// The form sends messages with the EmailJS service. Tests intercept this request,
+// The form sends messages to the FormSubmit service. Tests intercept this request,
 // so no real email is ever sent.
-const EMAILJS_URL = 'https://api.emailjs.com/api/v1.0/email/send';
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/**';
 
 test.describe('Contact form', () => {
   test.beforeEach(async ({ portfolio }) => {
@@ -17,11 +17,11 @@ test.describe('Contact form', () => {
   });
 
   test('valid message is sent and a confirmation is shown', async ({ portfolio, page }) => {
-    // Fake a successful answer from EmailJS and remember what the page sent.
+    // Fake a successful answer from FormSubmit and remember what the page sent.
     const sentEmails: string[] = [];
-    await page.route(EMAILJS_URL, async route => {
+    await page.route(FORMSUBMIT_URL, async route => {
       sentEmails.push(route.request().postData() ?? '');
-      await route.fulfill({ status: 200, body: 'OK', headers: { 'Access-Control-Allow-Origin': '*' } });
+      await route.fulfill({ json: { success: 'true' }, headers: { 'Access-Control-Allow-Origin': '*' } });
     });
 
     await portfolio.fillContactForm('Jane Recruiter', 'jane@example.com', 'Hello Moussa!');

@@ -57,7 +57,7 @@ Defects found while testing this website (automated Playwright runs and manual c
 - **Actual:** `template_id` equals the **service** ID.
 - **Root cause:** `Contact.tsx`: `templateId: import.meta.env.VITE_EMAILJS_SERVICE_ID`.
 - **Fix:** Reads `VITE_EMAILJS_TEMPLATE_ID`. The three variables are documented in `.env.example` and typed in `vite-env.d.ts`.
-- **⚠️ Deployment step:** add `VITE_EMAILJS_TEMPLATE_ID` in Vercel → Project Settings → Environment Variables, redeploy, then send a test message from the live site.
+- **Update:** EmailJS was later replaced by FormSubmit, which needs no keys at all, so this kind of mix-up can no longer happen.
 
 ### BUG-04
 **"Send" button says "sent successfully" before the message is sent**

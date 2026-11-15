@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    name: E2E, responsive, API, accessibility & SEO tests
+    name: E2E, responsive, API & accessibility tests
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:

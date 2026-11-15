@@ -17,7 +17,7 @@ This repository contains my portfolio website **and a Playwright test suite** (T
 |---|---|
 | `e2e/home.spec.ts` | Page title, my name and role, every section is on the page, "Download CV" link |
 | `e2e/navigation.spec.ts` | Navbar links scroll to their sections (desktop), hamburger menu works (phones) |
-| `e2e/contact-form.spec.ts` | Empty form shows an error; a valid message is sent and confirmed (EmailJS request mocked) |
+| `e2e/contact-form.spec.ts` | Empty form shows an error; a valid message is sent and confirmed (FormSubmit request mocked) |
 | `e2e/responsive.spec.ts` | No sideways scrolling, name and "Download CV" visible on the first screen |
 | `e2e/accessibility.spec.ts` | WCAG 2.1 AA scan with axe-core |
 | `api/api.spec.ts` | HTTP checks without a browser: home page, CV PDF, 3D model files |
@@ -35,7 +35,7 @@ The devices are listed in `playwright.config.ts`. Each one is a Playwright "proj
 - **Page Object Model:** all locators are in `tests/pages/PortfolioPage.ts`, so the tests read like plain steps.
 - **Custom fixture** (`tests/fixtures.ts`): gives each test a ready `portfolio` page object, blocks analytics (test runs never count as visits) and blocks the heavy 3D files (faster tests).
 - **User-facing locators:** `getByRole`, `getByLabel` and `getByText`, the way a visitor finds things.
-- **Network mocking:** `page.route()` answers the EmailJS request, so no real email is ever sent.
+- **Network mocking:** `page.route()` answers the FormSubmit request, so no real email is ever sent.
 - **CI:** `.github/workflows/playwright.yml` runs the whole suite on every pull request and push to `main`, and keeps the HTML report.
 
 ### Run the tests
@@ -93,7 +93,7 @@ The portfolio combines 3D elements, animations, responsive layouts, and modern f
 | Spline | Interactive 3D elements |
 | Tailwind CSS | Styling |
 | Framer Motion | Animations |
-| EmailJS | Email integration |
+| FormSubmit | Contact form email delivery (no key needed) |
 | Vercel | Deployment |
 
 ## 📂 Project Structure
@@ -141,7 +141,7 @@ cd My3DPortfolio
 npm install
 ```
 
-To make the contact form work locally, copy `.env.example` to `.env` and fill in your EmailJS service ID, template ID and public key.
+The contact form uses FormSubmit and needs no key or `.env` file. The very first message triggers an activation email to the address in `src/constants/config.ts`: click its link once and every message after that is delivered.
 
 ### 4. Start the development server
 

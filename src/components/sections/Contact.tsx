@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { CircleAlert, CircleCheck } from "lucide-react";
-import emailjs from "@emailjs/browser";
 import { SectionWrapper } from "../../hoc";
 import { slideIn } from "../../utils/motion";
 import { config } from "../../constants/config";
@@ -14,11 +13,11 @@ const INITIAL_STATE = Object.fromEntries(
   Object.keys(config.contact.form).map((input) => [input, ""])
 );
 
-const emailjsConfig = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-  accessToken: import.meta.env.VITE_EMAILJS_ACCESS_TOKEN,
-};
+/**
+ * FormSubmit (formsubmit.co) receives the form and emails it to me. No account or key needed:
+ * the very first message sends an activation email, and after clicking its link every message arrives.
+ */
+const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${config.html.email}`;
 
 /** Feedback shown under the "Send" button (instead of a browser pop-up). */
 const CONTACT_MESSAGES = {
@@ -80,19 +79,23 @@ const Contact = () => {
     setStatus(null);
     setLoading(true);
     try {
-      // Inside try: emailjs.send() throws synchronously when a key is missing.
-      await emailjs.send(
-        emailjsConfig.serviceId,
-        emailjsConfig.templateId,
-        {
-          form_name: form.name,
-          to_name: config.html.fullName,
-          from_email: form.email,
-          to_email: config.html.email,
+      const response = await fetch(FORMSUBMIT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `New message from ${form.name} (portfolio)`,
+          _template: "table",
+          _captcha: "false",
+          name: form.name,
+          email: form.email,
           message: form.message,
-        },
-        emailjsConfig.accessToken
-      );
+        }),
+      });
+      const result = await response.json();
+      // FormSubmit answers { success: "true" } (a string), so compare as text.
+      if (!response.ok || String(result.success) !== "true") {
+        throw new Error(result.message ?? `FormSubmit answered ${response.status}`);
+      }
       setStatus({ type: "success", text: CONTACT_MESSAGES.success });
       setForm(INITIAL_STATE);
     } catch (error) {

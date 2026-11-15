@@ -11,7 +11,9 @@ export const test = base.extend<{ portfolio: PortfolioPage }>({
   page: async ({ page }, use) => {
     await page.route(/googletagmanager\.com|google-analytics\.com|\/_vercel\//, route => route.abort());
     await page.route(/\.gltf$/, route => route.abort());
-    await use(page);
+    await use(page); // the test runs here
+    // After the test: remove all routes so closing the page never waits on them.
+    await page.unrouteAll({ behavior: 'ignoreErrors' });
   },
 
   portfolio: async ({ page }, use) => {

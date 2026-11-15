@@ -36,3 +36,6 @@ dist-e2e
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Personal notes for Claude Code (not part of the project)
+CLAUDE.md
