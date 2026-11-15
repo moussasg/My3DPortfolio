@@ -201,7 +201,7 @@ const qaProjects: TQAProject[] = [
   {
     title: "Portfolio Test Suite",
     description:
-      "Automated tests for this website: E2E, cross-browser, mobile, API, accessibility, SEO and visual checks in GitHub Actions. Found and fixed 14 real bugs.",
+      "Automated tests for this website: E2E, cross-browser, iOS and Android phones, API and accessibility checks in GitHub Actions. Found and fixed 16 real bugs.",
     url: "https://github.com/moussasg/My3DPortfolio",
     image: portfolioTestReport,
     imageAlt: "Playwright test report of this website",

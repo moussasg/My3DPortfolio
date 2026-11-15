@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { styles } from "../constants/styles";
 
@@ -12,9 +12,11 @@ const SectionWrapper = (
   idName: Props["idName"]
 ) =>
   function HOC() {
+    // Visitors who ask their OS to reduce motion see the content right away, without a fade-in.
+    const reduceMotion = useReducedMotion();
     return (
       <motion.section
-        initial="hidden"
+        initial={reduceMotion ? "show" : "hidden"}
         whileInView="show"
         // Start the entrance animation once the section's top is 10% into the screen.
         // (A share of the section, like the old `amount: 0.25`, can never be on screen

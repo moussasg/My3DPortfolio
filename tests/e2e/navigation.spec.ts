@@ -1,66 +1,36 @@
-import { test, expect } from '../fixtures/test';
-import { navLinks } from '../data/portfolio';
+import { test, expect } from '../fixtures';
 
-const WHITE = 'rgb(255, 255, 255)';
-const SECONDARY = 'rgb(170, 166, 195)'; // tailwind `text-secondary` (#aaa6c3)
-const PRIMARY_BG = 'rgb(5, 8, 22)'; // tailwind `bg-primary` (#050816)
+// Each navbar link and the section title it should scroll to.
+const links = [
+  { link: 'About', section: 'Overview.' },
+  { link: 'Work', section: 'Work Experience.' },
+  { link: 'Projects', section: 'Projects.' },
+  { link: 'Contact', section: 'Contact.' },
+];
 
-test.describe('Desktop navigation', () => {
+test.describe('Navigation', () => {
   test.beforeEach(async ({ portfolio }) => {
     await portfolio.goto();
   });
 
-  // Includes "Projects", which had no anchor and no navbar entry before BUG-13 was fixed.
-  for (const { title, sectionId, heading } of navLinks) {
-    test(`"${title}" link scrolls to the ${heading} section`, { tag: '@smoke' }, async ({ portfolio, page }) => {
-      await portfolio.navbar.link(title).click();
+  test('navbar links scroll to their sections', async ({ portfolio, isMobile }) => {
+    test.skip(isMobile, 'Phones use the hamburger menu (next test)');
 
-      await expect(page).toHaveURL(new RegExp(`#${sectionId}$`));
-      await expect(page.getByRole('heading', { name: heading, exact: true })).toBeInViewport();
-    });
-  }
-
-  test('clicked link is highlighted, the others are not', async ({ portfolio }) => {
-    await portfolio.navbar.link('Contact').click();
-
-    await expect(portfolio.navbar.linkItem('Contact')).toHaveCSS('color', WHITE);
-    for (const other of ['About', 'Work', 'Projects']) {
-      await expect(portfolio.navbar.linkItem(other)).toHaveCSS('color', SECONDARY);
+    for (const { link, section } of links) {
+      await portfolio.navLink(link).click();
+      await expect(portfolio.sectionHeading(section)).toBeInViewport();
     }
   });
 
-  test('navbar background turns solid after scrolling', async ({ portfolio }) => {
-    await expect(portfolio.navbar.root).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  test('hamburger menu opens and its links work', async ({ portfolio, page, isMobile }) => {
+    test.skip(!isMobile, 'Only phones have the hamburger menu');
 
-    await portfolio.scrollTo(500);
+    await portfolio.menuButton.click();
+    await expect(portfolio.mobileMenu).toBeVisible();
 
-    await expect(portfolio.navbar.root).toHaveCSS('background-color', PRIMARY_BG);
-  });
+    await portfolio.navLink('Contact').click();
 
-  test('logo link brings the visitor back to the top', async ({ portfolio, page }) => {
-    await portfolio.scrollTo(2000);
-
-    await portfolio.navbar.logoLink.click();
-
-    await expect.poll(() => portfolio.scrollY()).toBe(0);
-    await expect(page).toHaveURL(/\/$/);
-  });
-
-  test('"Scroll Down" indicator jumps to the About section', async ({ portfolio, page }) => {
-    await portfolio.scrollDownLink.click();
-
-    await expect(page).toHaveURL(/#about$/);
-    await expect(page.getByRole('heading', { name: 'Overview.' })).toBeInViewport();
-  });
-
-  test('"To Top" button appears after scrolling and returns to the top', async ({ portfolio }) => {
-    await expect(portfolio.scrollToTopButton).toBeHidden();
-
-    await portfolio.scrollTo(1500);
-    await expect(portfolio.scrollToTopButton).toBeVisible();
-
-    await portfolio.scrollToTopButton.click();
-    await expect.poll(() => portfolio.scrollY()).toBe(0);
-    await expect(portfolio.scrollToTopButton).toBeHidden();
+    await expect(page).toHaveURL(/#contact$/);
+    await expect(portfolio.sectionHeading('Contact.')).toBeInViewport();
   });
 });

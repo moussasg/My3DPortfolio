@@ -5,6 +5,7 @@ import { random } from "maath";
 import { TypedArray } from "three";
 import * as THREE from 'three';
 import { CanvasErrorBoundary } from "./CanvasErrorBoundary";
+import WhenVisible from "./WhenVisible";
 
 const Stars = (props: any) => { //fdsfds
   const ref = useRef<THREE.Points>();
@@ -37,15 +38,18 @@ const Stars = (props: any) => { //fdsfds
 const StarsCanvas = () => {
   return (
     <div className="absolute inset-0 z-[-1] h-auto w-full">
-      <CanvasErrorBoundary>
-        <Canvas camera={{ position: [0, 0, 1] }}>
-          <Suspense fallback={null}>
-            <Stars />
-          </Suspense>
+      {/* Behind the Contact section: only created when the visitor scrolls near it. */}
+      <WhenVisible className="h-full w-full">
+        <CanvasErrorBoundary>
+          <Canvas camera={{ position: [0, 0, 1] }} dpr={[1, 1.5]}>
+            <Suspense fallback={null}>
+              <Stars />
+            </Suspense>
 
-          <Preload all />
-        </Canvas>
-      </CanvasErrorBoundary>
+            <Preload all />
+          </Canvas>
+        </CanvasErrorBoundary>
+      </WhenVisible>
     </div>
   );
 };

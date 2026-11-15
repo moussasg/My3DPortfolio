@@ -14,6 +14,7 @@ import {
   StarsCanvas,
 } from "./components";
 import { useEffect, useState } from "react";
+import { MotionConfig } from "framer-motion";
 import { config } from "./constants/config";
 import { Tech } from "./components/sections/Tech";
 import Education from "./components/sections/Education";
@@ -48,6 +49,8 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      {/* Visitors who ask their OS to reduce motion get no sliding, bouncing or looping animations. */}
+      <MotionConfig reducedMotion="user">
       <div className="bg-primary relative z-0">
       {showScrollTop && (
         <button
@@ -75,6 +78,7 @@ const App = () => {
           <StarsCanvas />
         </div>
       </div>
+      </MotionConfig>
     </BrowserRouter>
   );
 };

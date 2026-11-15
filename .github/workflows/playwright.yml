@@ -37,7 +37,7 @@ jobs:
           fi
 
       # Builds the app, starts it on localhost and runs every project:
-      # api, chromium, edge, firefox, webkit, 6 phones and 2 tablets.
+      # api, chromium, edge, firefox, webkit and 6 phones (small, medium, large iOS and Android).
       - name: Run Playwright tests
         run: npx playwright test
 

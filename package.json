@@ -10,18 +10,14 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "ts:check": "tsc --noEmit",
     "test": "playwright test",
-    "test:smoke": "playwright test --grep @smoke",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
     "test:chromium": "playwright test --project=chromium",
-    "test:cross-browser": "playwright test --project=chromium --project=edge --project=firefox --project=webkit",
-    "test:mobile": "playwright test --project=\"ios-*\" --project=\"android-*\" --project=\"tablet-*\"",
-    "test:a11y": "playwright test --grep @a11y",
+    "test:desktop": "playwright test --project=chromium --project=edge --project=firefox --project=webkit",
+    "test:mobile": "playwright test --project=\"ios-*\" --project=\"android-*\"",
     "test:api": "playwright test --project=api",
-    "test:visual": "playwright test --project=chromium --grep @visual",
-    "test:visual:update": "playwright test --project=chromium --grep @visual --update-snapshots",
-    "test:prod": "playwright test --project=chromium --grep @smoke",
     "test:report": "playwright show-report",
-    "test:typecheck": "tsc -p tests/tsconfig.json",
-    "test:responsive": "playwright test --grep @responsive"
+    "test:typecheck": "tsc -p tests/tsconfig.json"
   },
   "dependencies": {
     "@emailjs/browser": "^3.10.0",

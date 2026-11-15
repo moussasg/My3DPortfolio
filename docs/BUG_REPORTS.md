@@ -1,29 +1,25 @@
 # Bug Reports
 
-Defects found by the automated test suite in this repository, and how each one was fixed.
+Defects found while testing this website (automated Playwright runs and manual checks on desktop and phones), and how each one was fixed.
 
-**Workflow:** each bug was first captured by a test that checks the *correct*
-behaviour, marked as an expected failure with `knownBug(...)` (Playwright
-`test.fail()`), so the pipeline stayed green while the bug was open. After the
-fix, the marker was removed and the test now runs as a **regression test**.
-Each one is labelled `// Regression test for BUG-xx` in the code.
-
-| ID | Title | Severity | Area | Status | Regression test |
-|---|---|---|---|---|---|
-| [BUG-01](#bug-01) | Hamburger menu is invisible on phones | High | Mobile / Navigation | ✅ Fixed | `e2e/mobile.spec.ts` |
-| [BUG-02](#bug-02) | Whole site goes blank if a 3D model fails to load | High | Resilience | ✅ Fixed | `e2e/resilience.spec.ts` |
-| [BUG-03](#bug-03) | Contact form sends the service ID as the template ID | High | Contact form | ✅ Fixed | `e2e/contact-form.spec.ts` |
-| [BUG-04](#bug-04) | "Send" button says "sent successfully" before the message is sent | Medium | Contact form | ✅ Fixed | `e2e/contact-form.spec.ts` |
-| [BUG-05](#bug-05) | Project preview icon opens the project in two tabs | Medium | Projects | ✅ Fixed | `e2e/links.spec.ts` |
-| [BUG-06](#bug-06) | Stray `\` character on the QA Automation project card | Medium | Projects / UI | ✅ Fixed | `e2e/content.spec.ts` |
-| [BUG-07](#bug-07) | Images without alt text and links without a name | Medium | Accessibility | ✅ Fixed | `a11y/accessibility.spec.ts` |
-| [BUG-08](#bug-08) | "To Top" control cannot be used with the keyboard | Low | Accessibility | ✅ Fixed | `a11y/accessibility.spec.ts` |
-| [BUG-09](#bug-09) | External links use `target="blank"` and no `rel="noopener"` | Low | Links / Security | ✅ Fixed | `e2e/links.spec.ts` |
-| [BUG-10](#bug-10) | Page has three `<h1>` headings | Low | SEO | ✅ Fixed | `seo/seo.spec.ts` |
-| [BUG-11](#bug-11) | `<title>` in index.html differs from the runtime title | Low | SEO | ✅ Fixed | `seo/seo.spec.ts` |
-| [BUG-12](#bug-12) | Experience date written "Mars 2024" | Low | Content | ✅ Fixed | `e2e/content.spec.ts` |
-| [BUG-13](#bug-13) | Projects section cannot be linked to | Low | Navigation | ✅ Fixed | `e2e/navigation.spec.ts` |
-| [BUG-14](#bug-14) | Project cards stuck 100 px too low on phones | Medium | Responsive / UI | ✅ Fixed | `responsive/responsive.spec.ts` |
+| ID | Title | Severity | Area | Status |
+|---|---|---|---|---|
+| [BUG-01](#bug-01) | Hamburger menu is invisible on phones | High | Mobile / Navigation | ✅ Fixed |
+| [BUG-02](#bug-02) | Whole site goes blank if a 3D model fails to load | High | Resilience | ✅ Fixed |
+| [BUG-03](#bug-03) | Contact form sends the service ID as the template ID | High | Contact form | ✅ Fixed |
+| [BUG-04](#bug-04) | "Send" button says "sent successfully" before the message is sent | Medium | Contact form | ✅ Fixed |
+| [BUG-05](#bug-05) | Project preview icon opens the project in two tabs | Medium | Projects | ✅ Fixed |
+| [BUG-06](#bug-06) | Stray `\` character on the QA Automation project card | Medium | Projects / UI | ✅ Fixed |
+| [BUG-07](#bug-07) | Images without alt text and links without a name | Medium | Accessibility | ✅ Fixed |
+| [BUG-08](#bug-08) | "To Top" control cannot be used with the keyboard | Low | Accessibility | ✅ Fixed |
+| [BUG-09](#bug-09) | External links use `target="blank"` and no `rel="noopener"` | Low | Links / Security | ✅ Fixed |
+| [BUG-10](#bug-10) | Page has three `<h1>` headings | Low | SEO | ✅ Fixed |
+| [BUG-11](#bug-11) | `<title>` in index.html differs from the runtime title | Low | SEO | ✅ Fixed |
+| [BUG-12](#bug-12) | Experience date written "Mars 2024" | Low | Content | ✅ Fixed |
+| [BUG-13](#bug-13) | Projects section cannot be linked to | Low | Navigation | ✅ Fixed |
+| [BUG-14](#bug-14) | Project cards stuck 100 px too low on phones | Medium | Responsive / UI | ✅ Fixed |
+| [BUG-15](#bug-15) | 3D scenes crash on computers with little graphics memory | High | Performance / 3D | ✅ Fixed |
+| [BUG-16](#bug-16) | Animations ignore the "reduce motion" setting | Medium | Accessibility | ✅ Fixed |
 
 ---
 
@@ -149,4 +145,32 @@ Each one is labelled `// Regression test for BUG-xx` in the code.
 - **Expected:** Cards sit right under the section text, and the last card ends inside the Projects section.
 - **Actual:** A large empty gap above the first card, and the last card ("Magazine") hangs out of the section, into the space before Education.
 - **Root cause:** `SectionWrapper.tsx` started each section's entrance animation only when 25% of the section was on screen at once. On a phone the Projects section is about 5,000 px tall, so 25% never fits on the screen: the animation never ran and the cards stayed at their start position, 100 px lower (section headings 50 px higher).
-- **Fix:** The animation now starts as soon as the top of a section is 10% into the screen, whatever the section's height. The responsive test now also checks that no text, image or link sticks out of its own section, on every browser and device.
+- **Fix:** The animation now starts as soon as the top of a section is 10% into the screen, whatever the section's height.
+
+### BUG-15
+**3D scenes crash on computers with little graphics memory**
+
+- **Severity:** High: the 3D scenes disappear, JavaScript errors are thrown, and in Safari's engine the whole tab can crash.
+- **Environment:** WebKit (Safari engine) on Windows with a visible browser window (`--headed`, Playwright UI mode), on a machine with 8 GB RAM.
+- **Found by:** running the suite headed. Headless browsers draw WebGL in software, so the problem never showed there.
+- **Steps to reproduce:**
+  1. Open the site in a browser that uses the real graphics card, on a low-memory machine.
+  2. Scroll down to Contact.
+- **Expected:** The 3D models are shown and the page keeps working.
+- **Actual:** The console shows `WebGL: OUT_OF_MEMORY`, then `WebGL: context lost` and `null is not an object (evaluating '...getProgramInfoLog...')`; sometimes the tab crashes.
+- **Root cause:** The 3D textures were far bigger than they appear on screen (one was 3840×2160, the earth model has 11 at 1536×1536): about 250 MB of graphics memory. All three 3D scenes were also created at page load, each canvas kept an extra copy of every frame (`preserveDrawingBuffer`) and rendered at up to 2× pixel density.
+- **Fix:** Textures resized to at most 1024 px (same files, same format); the earth and star scenes are only created when the visitor scrolls near them; `preserveDrawingBuffer` removed; pixel density capped at 1.5.
+
+### BUG-16
+**Animations ignore the "reduce motion" setting**
+
+- **Severity:** Medium: accessibility (WCAG 2.3.3). Some visitors turn on "reduce motion" because movement makes them dizzy.
+- **Environment:** All browsers, with the operating system's "reduce motion" setting on (Playwright: `reducedMotion: 'reduce'`).
+- **Found by:** a headed Firefox run, where a never-ending animation kept the page busy until the browser stopped the script ("Script terminated by timeout").
+- **Steps to reproduce:**
+  1. Turn on "reduce motion" in the operating system.
+  2. Open the site.
+- **Expected:** No sliding, bouncing or looping animations; content shows right away.
+- **Actual:** The "Scroll Down" dot bounced forever and every section slid and faded in. Only smooth scrolling and confetti respected the setting.
+- **Root cause:** The Framer Motion animations never checked the setting.
+- **Fix:** `<MotionConfig reducedMotion="user">` around the app, and sections start fully visible when the setting is on.

@@ -62,9 +62,9 @@ const ComputersCanvas = () => {
           <Canvas
             frameloop="demand"
             shadows
-            dpr={[1, 2]}
+            // Capped at 1.5: sharper than 1 on high-DPI screens, without 2×2 the graphics memory.
+            dpr={[1, 1.5]}
             camera={{ position: [20, 3, 5], fov: 25 }}
-            gl={{ preserveDrawingBuffer: true }}
           >
             <Suspense fallback={<CanvasLoader/>}>
               <OrbitControls
