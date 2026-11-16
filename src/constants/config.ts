@@ -20,8 +20,9 @@ type TConfig = {
   hero: {
     name: string;
     role: string;
-    experience: string;
-    /** Press article shown right after `experience`, to prove its numbers. */
+    /** The press badge sits right under this claim, to prove it. */
+    claim: string;
+    result: string;
     pressSource: { publisher: string; url: string };
     location: string;
     availability: string;
@@ -62,19 +63,20 @@ export const config: TConfig = {
     email: "moussaswag5@gmail.com",
     cvUrl: "/Moussa_Souag_Junior_QA_Automation_CV.pdf",
   },
-  // Kept in line with the CV (Moussa_Souag_Junior_QA_Automation_CV.pdf, v10).
+  // Kept in line with the CV (Moussa_Souag_Junior_QA_Automation_CV.pdf).
   hero: {
     name: "Moussa Souag",
     role: "Junior QA Automation Engineer · Playwright | TypeScript | JavaScript",
-    experience:
-      "1.5+ years testing a media platform with 6 billion views in its first year: 5,000+ verified defects across web, mobile and TV.",
+    claim: "1.5+ years testing a media platform with 6 billion views in its first year",
+    /** My own result, shown under the press badge. */
+    result: "5,000+ verified defects across web, mobile & TV",
     // Press article behind the claim (6 billion views in year one).
     pressSource: {
       publisher: "Campaign Middle East",
       url: "https://campaignme.com/blinx-hits-6-billion-views-in-year-one-of-operations/",
     },
     location: "Algiers, Algeria",
-    availability: "Open to remote & on-site roles (UAE, Europe, Worldwide)",
+    availability: "Open to worldwide remote & on-site roles (UAE, GCC)",
   },
   social: {
     github: "https://github.com/moussasg",

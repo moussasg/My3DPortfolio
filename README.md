@@ -169,7 +169,7 @@ Live website: https://moussasg.vercel.app/
 
 ## 👨‍💻 About Me
 
-I'm Moussa, a **Junior QA Automation Engineer** looking for my next role (remote & on-site roles: UAE, Europe, worldwide). I have:
+I'm Moussa, a **Junior QA Automation Engineer** looking for my next role (remote worldwide & on-site: UAE, GCC). I have:
 
 - **1.5+ years of hands-on QA** on a media platform with 6 billion views in its first year: 5,000+ verified defects across web, mobile and TV
 - **Test automation** with Playwright and TypeScript: Page Object Model, API tests, multi-browser runs and GitHub Actions CI/CD

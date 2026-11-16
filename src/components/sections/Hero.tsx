@@ -37,7 +37,7 @@ const Hero = () => {
 
       {/* z-10 keeps the text above the 3D scene; pointer-events-none still lets visitors drag the model behind it. */}
       <div
-        className={`pointer-events-none relative z-10 mx-auto flex max-w-7xl flex-row items-start gap-5 pb-64 pt-[120px] xs:pb-44 ${styles.paddingX}`}
+        className={`pointer-events-none relative z-10 mx-auto flex max-w-7xl flex-row items-start gap-5 pb-64 pt-[88px] xs:pb-44 sm:pt-[120px] ${styles.paddingX}`}
       >
         <div className="mt-5 flex flex-col items-center justify-center">
           <div className="h-5 w-5 rounded-full bg-[#915EFF]" />
@@ -49,10 +49,8 @@ const Hero = () => {
             Hi, I'm <span className="text-[#915eff]">Moussa</span>
           </h1>
           <p className={`${styles.heroSubText} font-semibold`}>{config.hero.role}</p>
-          <p className={styles.heroSubText}>
-            {config.hero.experience}
-          </p>
-          {/* Press badge that proves the numbers above. Glow and shine stop for visitors who reduce motion. */}
+          <p className={styles.heroSubText}>{config.hero.claim}</p>
+          {/* Press badge right under the claim it proves. Glow and shine stop for visitors who reduce motion. */}
           <a
             href={config.hero.pressSource.url}
             target="_blank"
@@ -77,6 +75,7 @@ const Hero = () => {
               className="h-5 w-5 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
             />
           </a>
+          <p className={styles.heroSubText}>{config.hero.result}</p>
           {/* Dark see-through background: stays readable when the 3D monitor is behind it (short laptop screens). */}
           <p className="text-secondary -ml-3 flex items-start gap-2 self-start rounded-xl bg-primary/80 px-3 py-1.5 text-[14px] backdrop-blur-sm sm:text-[16px]">
             <MapPin size={18} className="mt-[2px] shrink-0" aria-hidden="true" />
