@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { Hand, MapPin, Rotate3d } from "lucide-react";
+import { ArrowUpRight, BadgeCheck, Hand, MapPin, Rotate3d } from "lucide-react";
 import { useEffect, useState } from "react";
 import { config } from "../../constants/config";
 import { styles } from "../../constants/styles";
@@ -48,9 +48,37 @@ const Hero = () => {
           <h1 className={`${styles.heroHeadText} text-white`}>
             Hi, I'm <span className="text-[#915eff]">Moussa</span>
           </h1>
-          <p className={`${styles.heroSubText} font-semibold`}>{config.hero.p[0]}</p>
-          <p className={styles.heroSubText}>{config.hero.p[1]}</p>
-          <p className="text-secondary flex items-start gap-2 text-[14px] sm:text-[16px]">
+          <p className={`${styles.heroSubText} font-semibold`}>{config.hero.role}</p>
+          <p className={styles.heroSubText}>
+            {config.hero.experience}
+          </p>
+          {/* Press badge that proves the numbers above. Glow and shine stop for visitors who reduce motion. */}
+          <a
+            href={config.hero.pressSource.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group pointer-events-auto relative inline-flex items-center gap-2 self-start overflow-hidden rounded-2xl border border-white/25 bg-gradient-to-r from-[#7c3aed] to-[#6d28d9] py-2 pl-1.5 pr-3 text-white xs:gap-3 xs:pl-2 xs:pr-4 transition duration-300 hover:-translate-y-0.5 hover:scale-[1.03] hover:border-white/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white motion-safe:animate-glow motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100"
+          >
+            {/* The sweeping shine (decoration only). */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 left-0 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/35 to-transparent motion-safe:animate-shine motion-reduce:hidden"
+            />
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white xs:h-8 xs:w-8">
+              <BadgeCheck aria-hidden="true" className="h-4 w-4 text-[#7c3aed] xs:h-5 xs:w-5" strokeWidth={2.5} />
+            </span>
+            <span className="flex flex-col leading-tight">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-white/85">Verified by</span>{" "}
+              <span className="whitespace-nowrap text-[14px] font-bold xs:text-[15px] sm:text-[16px]">{config.hero.pressSource.publisher}</span>
+            </span>
+            <ArrowUpRight
+              aria-hidden="true"
+              strokeWidth={2.5}
+              className="h-5 w-5 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            />
+          </a>
+          {/* Dark see-through background: stays readable when the 3D monitor is behind it (short laptop screens). */}
+          <p className="text-secondary -ml-3 flex items-start gap-2 self-start rounded-xl bg-primary/80 px-3 py-1.5 text-[14px] backdrop-blur-sm sm:text-[16px]">
             <MapPin size={18} className="mt-[2px] shrink-0" aria-hidden="true" />
             <span>
               {config.hero.location} · {config.hero.availability}

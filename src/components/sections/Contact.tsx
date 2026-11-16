@@ -14,21 +14,25 @@ const INITIAL_STATE = Object.fromEntries(
 );
 
 /**
- * FormSubmit (formsubmit.co) receives the form and emails it to me. No account or key needed:
- * the very first message sends an activation email, and after clicking its link every message arrives.
+ * No email service: after "Send", a link opens the visitor's own email app with my address,
+ * a subject and their message already filled in (a `mailto:` link). They just press Send there.
  */
-const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${config.html.email}`;
+const buildMailtoLink = (name: string, email: string, message: string): string => {
+  const subject = `New message from ${name} (portfolio)`;
+  const body = `${message}\n\n${name}\n${email}`;
+  return `mailto:${config.html.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+};
 
 /** Feedback shown under the "Send" button (instead of a browser pop-up). */
 const CONTACT_MESSAGES = {
   missingFields: "Please fill in all the fields before submitting.",
-  success: "Thank you! Your message has been sent. I will get back to you as soon as possible.",
-  failure: "Sorry, your message could not be sent. Please try again later or contact me on LinkedIn.",
+  success: "Thank you! Your message is ready.",
+  openEmailApp: "Click here to send it from your email app.",
 };
 
-type TFormStatus = { type: "success" | "error"; text: string } | null;
+type TFormStatus = { type: "success"; text: string; mailtoLink: string } | { type: "error"; text: string } | null;
 
-const FormMessage = ({ type, text }: { type: "success" | "error"; text: string }) => {
+const FormMessage = ({ type, text, children }: { type: "success" | "error"; text: string; children?: React.ReactNode }) => {
   const Icon = type === "success" ? CircleCheck : CircleAlert;
   const colors =
     type === "success"
@@ -37,7 +41,10 @@ const FormMessage = ({ type, text }: { type: "success" | "error"; text: string }
   return (
     <p className={`mt-4 flex items-start gap-2 rounded-lg border px-4 py-3 text-sm font-medium ${colors}`}>
       <Icon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />
-      <span>{text}</span>
+      <span>
+        {text}
+        {children}
+      </span>
     </p>
   );
 };
@@ -45,7 +52,6 @@ const FormMessage = ({ type, text }: { type: "success" | "error"; text: string }
 const Contact = () => {
   const formRef = useRef<React.LegacyRef<HTMLFormElement> | undefined>();
   const [form, setForm] = useState(INITIAL_STATE);
-  const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<TFormStatus>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
 
@@ -66,7 +72,7 @@ const Contact = () => {
   };
 
   
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement> | undefined) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement> | undefined) => {
     if (e === undefined) return;
     e.preventDefault();
 
@@ -76,34 +82,9 @@ const Contact = () => {
       return;
     }
 
-    setStatus(null);
-    setLoading(true);
-    try {
-      const response = await fetch(FORMSUBMIT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          _subject: `New message from ${form.name} (portfolio)`,
-          _template: "table",
-          _captcha: "false",
-          name: form.name,
-          email: form.email,
-          message: form.message,
-        }),
-      });
-      const result = await response.json();
-      // FormSubmit answers { success: "true" } (a string), so compare as text.
-      if (!response.ok || String(result.success) !== "true") {
-        throw new Error(result.message ?? `FormSubmit answered ${response.status}`);
-      }
-      setStatus({ type: "success", text: CONTACT_MESSAGES.success });
-      setForm(INITIAL_STATE);
-    } catch (error) {
-      console.error(error);
-      setStatus({ type: "error", text: CONTACT_MESSAGES.failure });
-    } finally {
-      setLoading(false);
-    }
+    const mailtoLink = buildMailtoLink(form.name, form.email, form.message);
+    setStatus({ type: "success", text: CONTACT_MESSAGES.success, mailtoLink });
+    setForm(INITIAL_STATE);
   };
 
   return (
@@ -146,15 +127,21 @@ const Contact = () => {
           <div className="flex flex-col items-start">
             <button
               type="submit"
-              disabled={loading}
-              className="bg-tertiary shadow-primary w-fit rounded-xl px-8 py-3 font-bold text-white shadow-md outline-none disabled:cursor-wait disabled:opacity-60"
+              className="bg-tertiary shadow-primary w-fit rounded-xl px-8 py-3 font-bold text-white shadow-md outline-none"
             >
-              {loading ? "Sending..." : "Send"}
+              Send
             </button>
             {/* Live regions stay in the page so screen readers announce new messages. */}
             <div ref={messagesRef} className="w-full scroll-mb-6">
               <div role="status">
-                {status?.type === "success" && <FormMessage {...status} />}
+                {status?.type === "success" && (
+                  <FormMessage type="success" text={status.text}>
+                    {" "}
+                    <a href={status.mailtoLink} className="underline">
+                      {CONTACT_MESSAGES.openEmailApp}
+                    </a>
+                  </FormMessage>
+                )}
               </div>
               <div role="alert">
                 {status?.type === "error" && <FormMessage {...status} />}

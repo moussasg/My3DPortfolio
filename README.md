@@ -17,7 +17,7 @@ This repository contains my portfolio website **and a Playwright test suite** (T
 |---|---|
 | `e2e/home.spec.ts` | Page title, my name and role, every section is on the page, "Download CV" link |
 | `e2e/navigation.spec.ts` | Navbar links scroll to their sections (desktop), hamburger menu works (phones) |
-| `e2e/contact-form.spec.ts` | Empty form shows an error; a valid message is sent and confirmed (FormSubmit request mocked) |
+| `e2e/contact-form.spec.ts` | Empty form shows an error; a valid message is sent and confirmed (checks the ready-to-send `mailto:` email link) |
 | `e2e/responsive.spec.ts` | No sideways scrolling, name and "Download CV" visible on the first screen |
 | `e2e/accessibility.spec.ts` | WCAG 2.1 AA scan with axe-core |
 | `api/api.spec.ts` | HTTP checks without a browser: home page, CV PDF, 3D model files |
@@ -35,7 +35,7 @@ The devices are listed in `playwright.config.ts`. Each one is a Playwright "proj
 - **Page Object Model:** all locators are in `tests/pages/PortfolioPage.ts`, so the tests read like plain steps.
 - **Custom fixture** (`tests/fixtures.ts`): gives each test a ready `portfolio` page object, blocks analytics (test runs never count as visits) and blocks the heavy 3D files (faster tests).
 - **User-facing locators:** `getByRole`, `getByLabel` and `getByText`, the way a visitor finds things.
-- **Network mocking:** `page.route()` answers the FormSubmit request, so no real email is ever sent.
+- **Network blocking:** `page.route()` blocks analytics and the heavy 3D files, so tests are fast and never count as real visits.
 - **CI:** `.github/workflows/playwright.yml` runs the whole suite on every pull request and push to `main`, and keeps the HTML report.
 
 ### Run the tests
@@ -93,7 +93,7 @@ The portfolio combines 3D elements, animations, responsive layouts, and modern f
 | Spline | Interactive 3D elements |
 | Tailwind CSS | Styling |
 | Framer Motion | Animations |
-| FormSubmit | Contact form email delivery (no key needed) |
+| `mailto:` link | Contact form opens the visitor's email app (no email service needed) |
 | Vercel | Deployment |
 
 ## 📂 Project Structure
@@ -141,7 +141,7 @@ cd My3DPortfolio
 npm install
 ```
 
-The contact form uses FormSubmit and needs no key or `.env` file. The very first message triggers an activation email to the address in `src/constants/config.ts`: click its link once and every message after that is delivered.
+The contact form needs no email service, key or `.env` file: after "Send", a link opens the visitor's own email app with the message ready to send.
 
 ### 4. Start the development server
 
@@ -169,9 +169,9 @@ Live website: https://moussasg.vercel.app/
 
 ## 👨‍💻 About Me
 
-I'm Moussa, a **Junior QA Automation Engineer** looking for my next role (worldwide remote & on-site roles: UAE, GCC). I have:
+I'm Moussa, a **Junior QA Automation Engineer** looking for my next role (remote & on-site roles: UAE, Europe, worldwide). I have:
 
-- **1.5+ years of hands-on QA** on a media platform with 5 billion views in its first year: 5,000+ verified defects across web, mobile and TV
+- **1.5+ years of hands-on QA** on a media platform with 6 billion views in its first year: 5,000+ verified defects across web, mobile and TV
 - **Test automation** with Playwright and TypeScript: Page Object Model, API tests, multi-browser runs and GitHub Actions CI/CD
 - **Front-end development** experience (React, Next.js), which helps me write stable locators and understand what I test
 

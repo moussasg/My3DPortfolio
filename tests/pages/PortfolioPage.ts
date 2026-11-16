@@ -12,6 +12,7 @@ export class PortfolioPage {
   // Hero (first screen)
   readonly heroHeading: Locator;
   readonly downloadCvButton: Locator;
+  readonly pressSourceLink: Locator; // "Verified by Campaign Middle East" link after the 6 billion views claim
 
   // Navigation
   readonly menuButton: Locator; // hamburger button, phones only
@@ -24,12 +25,14 @@ export class PortfolioPage {
   readonly sendButton: Locator;
   readonly successMessage: Locator;
   readonly errorMessage: Locator;
+  readonly openEmailAppLink: Locator; // link shown after "Send": opens the visitor's email app
 
   constructor(page: Page) {
     this.page = page;
 
     this.heroHeading = page.getByRole('heading', { name: "Hi, I'm Moussa" });
     this.downloadCvButton = page.getByRole('link', { name: 'Download CV' }).first();
+    this.pressSourceLink = page.getByRole('link', { name: 'Verified by Campaign Middle East' });
 
     this.menuButton = page.getByRole('button', { name: 'Open menu' });
     this.mobileMenu = page.locator('#mobile-menu');
@@ -40,6 +43,7 @@ export class PortfolioPage {
     this.sendButton = page.getByRole('button', { name: 'Send' });
     this.successMessage = page.getByRole('status');
     this.errorMessage = page.getByRole('alert');
+    this.openEmailAppLink = page.getByRole('link', { name: 'Click here to send it from your email app' });
   }
 
   async goto() {

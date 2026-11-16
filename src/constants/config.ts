@@ -19,7 +19,10 @@ type TConfig = {
   };
   hero: {
     name: string;
-    p: string[];
+    role: string;
+    experience: string;
+    /** Press article shown right after `experience`, to prove its numbers. */
+    pressSource: { publisher: string; url: string };
     location: string;
     availability: string;
   };
@@ -59,15 +62,19 @@ export const config: TConfig = {
     email: "moussaswag5@gmail.com",
     cvUrl: "/Moussa_Souag_Junior_QA_Automation_CV.pdf",
   },
-  // Kept in line with the CV (Moussa_Souag_Junior_QA_Automation_CV.pdf).
+  // Kept in line with the CV (Moussa_Souag_Junior_QA_Automation_CV.pdf, v7).
   hero: {
     name: "Moussa Souag",
-    p: [
-      "Junior QA Automation Engineer · Playwright | TypeScript | JavaScript",
-      "1.5+ years testing a media platform with 5 billion views in its first year: 5,000+ verified defects across web, mobile and TV.",
-    ],
+    role: "Junior QA Automation Engineer · Playwright | TypeScript | JavaScript",
+    experience:
+      "1.5+ years testing a media platform with 6 billion views in its first year: 5,000+ verified defects across web, mobile and TV.",
+    // Press article behind the claim (6 billion views in year one).
+    pressSource: {
+      publisher: "Campaign Middle East",
+      url: "https://campaignme.com/blinx-hits-6-billion-views-in-year-one-of-operations/",
+    },
     location: "Algiers, Algeria",
-    availability: "Open to worldwide remote & on-site roles (UAE, GCC)",
+    availability: "Open to remote & on-site roles (UAE, Europe, Worldwide)",
   },
   social: {
     github: "https://github.com/moussasg",
@@ -92,7 +99,7 @@ export const config: TConfig = {
     about: {
       p: "Introduction", //
       h2: "Overview.",
-      content: "QA Engineer with 1.5+ years of hands-on testing experience on a high-traffic media platform (5 billion views in its first year) across web, mobile and TV, reporting 5,000+ verified defects. Strong JavaScript/TypeScript foundation from front-end development (React, Next.js) and a 6-month full-stack JavaScript bootcamp. I build Playwright (TypeScript) test suites with the Page Object Model, API tests, multi-browser execution and automated GitHub Actions CI/CD workflows, with a focus on stable locators, flaky-test resolution and clear test reporting. Seeking a Junior QA Automation Engineer role.",
+      content: "QA Engineer with 1.5+ years of hands-on testing experience on a high-traffic media platform (6 billion views in its first year) across web, mobile and TV, reporting 5,000+ verified defects. Strong JavaScript/TypeScript foundation from front-end development (React, Next.js) and a 6-month full-stack JavaScript bootcamp. I build Playwright (TypeScript) test suites with the Page Object Model, API tests, multi-browser execution and automated GitHub Actions CI/CD workflows, with a focus on stable locators, flaky-test resolution and clear test reporting. Seeking a Junior QA Automation Engineer role.",
     },
     experience: {
       p: "What I have done so far",

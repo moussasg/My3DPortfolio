@@ -58,7 +58,7 @@ const App = () => {
           onClick={scrollToTop}
           aria-label="To Top"
           title="Back to top"
-          className="group fixed bottom-5 right-4 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-[#7c3aed] text-white shadow-lg shadow-[#915eff]/40 ring-1 ring-white/20 transition hover:-translate-y-1 hover:bg-[#915eff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:bottom-8 sm:right-8 sm:h-12 sm:w-12"
+          className="group fixed bottom-4 right-2 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-[#7c3aed] text-white shadow-lg shadow-[#915eff]/40 ring-1 ring-white/20 transition hover:-translate-y-1 hover:bg-[#915eff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:bottom-8 sm:right-8 sm:h-12 sm:w-12"
         >
           <ArrowUp aria-hidden="true" strokeWidth={2.5} className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 sm:h-6 sm:w-6" />
         </button>

@@ -126,7 +126,7 @@ const experiences: TExperience[] = [
     iconBg: "#383E56",
     date: "Apr 2025 - Present",
     points: [
-      "Reported, tracked and verified fixes for 5,000+ defects across web, mobile and TV applications of a media platform that crossed 5 billion views in its first year.",
+      "Reported, tracked and verified fixes for 5,000+ defects across web, mobile and TV applications of a media platform that crossed 6 billion views in its first year.",
       "Designed and executed test cases for every release, covering functional, regression, smoke and exploratory testing.",
       "Validated end-to-end user flows across web, mobile and TV platforms to safeguard continuous release stability.",
       "Automated navigation, responsive UI and HTTP 200 checks using Playwright (TypeScript) with the Page Object Model, reducing repetitive manual regression work by 40%.",
