@@ -62,7 +62,7 @@ export const config: TConfig = {
     email: "moussaswag5@gmail.com",
     cvUrl: "/Moussa_Souag_Junior_QA_Automation_CV.pdf",
   },
-  // Kept in line with the CV (Moussa_Souag_Junior_QA_Automation_CV.pdf, v7).
+  // Kept in line with the CV (Moussa_Souag_Junior_QA_Automation_CV.pdf, v10).
   hero: {
     name: "Moussa Souag",
     role: "Junior QA Automation Engineer · Playwright | TypeScript | JavaScript",
